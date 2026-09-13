@@ -102,9 +102,23 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
         <div className="space-y-0.5">
           <p className="text-xs font-semibold text-win-text-light dark:text-win-text-dark">{title}</p>
           <p className="text-[11px] text-win-muted-light dark:text-win-muted-dark">
-            Project demonstration will be added.
+            {src ? 'Video is loading or not available in this preview.' : 'Project demonstration will be added.'}
           </p>
         </div>
+        {src && hasError && (
+          <button
+            onClick={() => {
+              setHasError(false);
+              if (videoRef.current) {
+                videoRef.current.load();
+              }
+            }}
+            className="mt-2 px-3 py-1 rounded text-[11px] font-medium bg-black/10 dark:bg-white/10 hover:bg-black/15 dark:hover:bg-white/15 text-win-text-light dark:text-win-text-dark transition-colors flex items-center gap-1.5"
+          >
+            <RotateCcw className="w-3 h-3" />
+            <span>Retry</span>
+          </button>
+        )}
       </div>
     );
   }
@@ -117,15 +131,20 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
     >
       <video
         ref={videoRef}
-        src={safeSrc}
         poster={poster}
         onTimeUpdate={handleTimeUpdate}
         onLoadedMetadata={handleLoadedMetadata}
-        onError={() => setHasError(true)}
+        onError={(e) => {
+          console.warn('Video failed to load:', safeSrc, e);
+          setHasError(true);
+        }}
         onEnded={() => setIsPlaying(false)}
         className="w-full h-full object-contain"
         preload="metadata"
-      />
+        playsInline
+      >
+        {safeSrc && <source src={safeSrc} type="video/mp4" />}
+      </video>
 
       {/* Control Overlay */}
       <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-3 pt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-200 space-y-2">

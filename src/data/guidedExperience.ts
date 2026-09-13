@@ -88,7 +88,7 @@ export const GUIDED_CHAPTERS: GuidedChapter[] = [
     storyPhase: 'origin',
     associatedAppId: 'projects',
     projectId: 'alpha-omega',
-    videoUrl: '/media/video/alpha-omega.mp4',
+    videoUrl: '/media/video/alpha_omega.mp4',
     audioUrl: '/media/audio/alpha-omega.mp3',
     narrationText:
       'Alpha Omega is a flagship modern e-commerce platform built for clothing and fashion accessories. It emphasizes high-contrast visual design, fluid browsing journeys, dynamic catalog filtering, secure checkout workflows, and optimized asset delivery.',
@@ -126,7 +126,7 @@ export const GUIDED_CHAPTERS: GuidedChapter[] = [
     storyPhase: 'origin',
     associatedAppId: 'projects',
     projectId: 'crestline-capital',
-    videoUrl: '/media/video/crestline-capital.mp4',
+    videoUrl: '/media/video/crestline_capital.mp4',
     audioUrl: '/media/audio/crestline-capital.mp3',
     narrationText:
       'Crestline Capital is a specialized platform designed to explain and facilitate structured bulk buying strategies. It demystifies how syndicates and investor groups can unlock builder-level or wholesale pricing through collective purchasing power.',
