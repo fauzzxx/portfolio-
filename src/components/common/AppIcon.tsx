@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  FolderGit2,
+  Folder,
   Cpu,
   Layers,
   Trophy,
@@ -9,10 +9,11 @@ import {
   User,
   Terminal,
   PlaySquare,
-  FileCode2,
+  FileCode,
   Mail,
-  Sliders,
+  Settings,
   Sparkles,
+  History,
 } from 'lucide-react';
 import type { LucideProps } from 'lucide-react';
 
@@ -20,33 +21,38 @@ interface AppIconProps extends LucideProps {
   name: string;
 }
 
-export const AppIcon: React.FC<AppIconProps> = ({ name, ...props }) => {
+export const AppIcon: React.FC<AppIconProps> = ({ name, className = '', ...props }) => {
   switch (name) {
     case 'FolderGit2':
-      return <FolderGit2 {...props} />;
+    case 'Folder':
+      return <Folder className={`text-[#ffb900] ${className}`} {...props} />;
     case 'Cpu':
-      return <Cpu {...props} />;
+      return <Cpu className={`text-[#00a4ef] ${className}`} {...props} />;
     case 'Layers':
-      return <Layers {...props} />;
+      return <Layers className={`text-[#0078d4] ${className}`} {...props} />;
     case 'Trophy':
-      return <Trophy {...props} />;
+      return <Trophy className={`text-[#f7b500] ${className}`} {...props} />;
     case 'Briefcase':
-      return <Briefcase {...props} />;
+      return <Briefcase className={`text-[#107c41] ${className}`} {...props} />;
     case 'FileText':
-      return <FileText {...props} />;
+      return <FileText className={`text-[#2b579a] ${className}`} {...props} />;
     case 'User':
-      return <User {...props} />;
+      return <User className={`text-[#0078d4] ${className}`} {...props} />;
     case 'Terminal':
-      return <Terminal {...props} />;
+      return <Terminal className={`text-[#cccccc] ${className}`} {...props} />;
     case 'PlaySquare':
-      return <PlaySquare {...props} />;
+      return <PlaySquare className={`text-[#ea3e2b] ${className}`} {...props} />;
     case 'FileCode2':
-      return <FileCode2 {...props} />;
+    case 'FileCode':
+      return <FileCode className={`text-[#0078d4] ${className}`} {...props} />;
     case 'Mail':
-      return <Mail {...props} />;
+      return <Mail className={`text-[#0078d4] ${className}`} {...props} />;
     case 'Sliders':
-      return <Sliders {...props} />;
+    case 'Settings':
+      return <Settings className={`text-[#a6a6a6] ${className}`} {...props} />;
+    case 'History':
+      return <History className={`text-[#0078d4] ${className}`} {...props} />;
     default:
-      return <Sparkles {...props} />;
+      return <Sparkles className={`text-[#0078d4] ${className}`} {...props} />;
   }
 };

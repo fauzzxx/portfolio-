@@ -15,6 +15,7 @@ import { MediaWindow } from '../windows/MediaWindow';
 import { TerminalWindow } from '../windows/TerminalWindow';
 import { SettingsWindow } from '../windows/SettingsWindow';
 import { ContactWindow } from '../windows/ContactWindow';
+import { TimelineWindow } from '../windows/TimelineWindow';
 
 interface WindowManagerProps {
   windows: Record<string, WindowState>;
@@ -61,6 +62,8 @@ export const WindowManager: React.FC<WindowManagerProps> = ({
         return <SettingsWindow onStartGuidedExperience={onStartGuidedExperience} />;
       case 'contact':
         return <ContactWindow />;
+      case 'timeline':
+        return <TimelineWindow onOpenApp={onFocus} />;
       default:
         return <div className="p-6">Application loaded.</div>;
     }

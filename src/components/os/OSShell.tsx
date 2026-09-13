@@ -6,7 +6,10 @@ import { Taskbar } from '../navigation/Taskbar';
 import { GuidedExperienceOverlay } from '../guided/GuidedExperienceOverlay';
 import { UniversalSearchModal } from '../navigation/UniversalSearchModal';
 import { ProjectDetailModal } from '../projects/ProjectDetailModal';
-import type { AppId } from '../../types/os';
+import { ExperienceSelectorModal } from '../desktop/ExperienceSelectorModal';
+import { FocusModeModal } from '../guided/FocusModeModal';
+import { logActivity } from '../../utils/recentActivity';
+import type { AppId, ExperienceMode } from '../../types/os';
 import type { Project } from '../../types/project';
 
 export const OSShell: React.FC = () => {
@@ -22,9 +25,26 @@ export const OSShell: React.FC = () => {
 
   const [isGuidedOpen, setIsGuidedOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isExperienceSelectorOpen, setIsExperienceSelectorOpen] = useState(false);
+  const [isFocusModeOpen, setIsFocusModeOpen] = useState(false);
+  const [currentExperienceMode, setCurrentExperienceMode] = useState<ExperienceMode>('explore');
   const [searchProjectDetail, setSearchProjectDetail] = useState<Project | null>(null);
 
+  // Check first visit to optionally show Experience Selector
+  useEffect(() => {
+    try {
+      const shown = localStorage.getItem('fauzaan_os_experience_selector_shown');
+      if (!shown) {
+        const timer = setTimeout(() => setIsExperienceSelectorOpen(true), 1200);
+        return () => clearTimeout(timer);
+      }
+      const savedMode = localStorage.getItem('fauzaan_os_experience_mode') as ExperienceMode;
+      if (savedMode) setCurrentExperienceMode(savedMode);
+    } catch {}
+  }, []);
+
   const handleOpenApp = (appId: AppId) => {
+    logActivity('open_app', `Launched ${appId.toUpperCase()}`, { appId });
     openWindow(appId);
   };
 
@@ -39,12 +59,16 @@ export const OSShell: React.FC = () => {
       // Ctrl+` to toggle terminal
       else if ((e.ctrlKey || e.metaKey) && e.key === '`') {
         e.preventDefault();
-        openWindow('terminal');
+        handleOpenApp('terminal');
       }
       // Escape to close modals
       else if (e.key === 'Escape') {
         if (searchProjectDetail) {
           setSearchProjectDetail(null);
+        } else if (isExperienceSelectorOpen) {
+          setIsExperienceSelectorOpen(false);
+        } else if (isFocusModeOpen) {
+          setIsFocusModeOpen(false);
         } else if (isSearchOpen) {
           setIsSearchOpen(false);
         } else if (isGuidedOpen) {
@@ -55,7 +79,7 @@ export const OSShell: React.FC = () => {
 
     window.addEventListener('keydown', handleGlobalKeyDown);
     return () => window.removeEventListener('keydown', handleGlobalKeyDown);
-  }, [searchProjectDetail, isSearchOpen, isGuidedOpen, openWindow]);
+  }, [searchProjectDetail, isSearchOpen, isGuidedOpen, isExperienceSelectorOpen, isFocusModeOpen]);
 
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-os-bg text-os-text flex flex-col select-none">
@@ -65,6 +89,8 @@ export const OSShell: React.FC = () => {
         onOpenApp={handleOpenApp}
         onStartGuidedExperience={() => setIsGuidedOpen(true)}
         onOpenSearch={() => setIsSearchOpen(true)}
+        onOpenFocusMode={() => setIsFocusModeOpen(true)}
+        onOpenExperienceSelector={() => setIsExperienceSelectorOpen(true)}
       />
 
       {/* Layered Window Manager for active windows */}
@@ -87,6 +113,7 @@ export const OSShell: React.FC = () => {
         onMinimizeWindow={minimizeWindow}
         onOpenSearch={() => setIsSearchOpen(true)}
         onStartGuidedExperience={() => setIsGuidedOpen(true)}
+        onOpenExperienceSelector={() => setIsExperienceSelectorOpen(true)}
       />
 
       {/* Universal Search Modal (Ctrl+K) */}
@@ -94,7 +121,10 @@ export const OSShell: React.FC = () => {
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}
         onOpenApp={handleOpenApp}
-        onOpenProject={(proj) => setSearchProjectDetail(proj)}
+        onOpenProject={(proj) => {
+          logActivity('view_project', `Viewed ${proj.title}`, { projectId: proj.id });
+          setSearchProjectDetail(proj);
+        }}
       />
 
       {/* Direct Project Detail Modal from Universal Search */}
@@ -105,14 +135,30 @@ export const OSShell: React.FC = () => {
         />
       )}
 
+      {/* Experience Mode Selector Modal ("WHAT BRINGS YOU HERE?") */}
+      <ExperienceSelectorModal
+        isOpen={isExperienceSelectorOpen}
+        onClose={() => setIsExperienceSelectorOpen(false)}
+        onSelectMode={(mode) => {
+          setCurrentExperienceMode(mode);
+          window.dispatchEvent(new CustomEvent('fauzaan_experience_mode_changed', { detail: mode }));
+        }}
+        currentMode={currentExperienceMode}
+      />
+
+      {/* Focus Mode Briefing Modal (2m, 5m, 10m) */}
+      <FocusModeModal
+        isOpen={isFocusModeOpen}
+        onClose={() => setIsFocusModeOpen(false)}
+        onOpenApp={handleOpenApp}
+        onStartFullTour={() => setIsGuidedOpen(true)}
+      />
+
       {/* Cinematic Guided Experience Overlay */}
       {isGuidedOpen && (
         <GuidedExperienceOverlay
           onExit={() => setIsGuidedOpen(false)}
-          onOpenApp={(appId) => {
-            setIsGuidedOpen(false);
-            handleOpenApp(appId);
-          }}
+          onOpenApp={handleOpenApp}
         />
       )}
     </div>

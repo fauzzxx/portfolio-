@@ -6,12 +6,47 @@ export const SKILLS_DATA: SkillCategoryGroup[] = [
     title: 'Core AI Areas',
     description: 'Foundational specializations in machine perception and intelligent systems',
     skills: [
-      { name: 'Computer Vision', connectedProjects: ['post-office-analyzer', 'cafe-analyzer', 'smart-classroom-assist'] },
-      { name: 'Object Detection & Tracking', connectedProjects: ['post-office-analyzer', 'cafe-analyzer'] },
-      { name: 'Real-time AI Systems', connectedProjects: ['post-office-analyzer', 'cafe-analyzer'] },
+      {
+        name: 'Computer Vision',
+        connectedProjects: [
+          'post-office-analyzer',
+          'cafe-analyzer',
+          'smart-classroom-assist',
+          'classroom-analyser',
+          'football-analyser',
+          'patrolpro',
+          'ai-drawing-challenge',
+        ],
+      },
+      {
+        name: 'Object Detection & Tracking',
+        connectedProjects: [
+          'post-office-analyzer',
+          'cafe-analyzer',
+          'smart-classroom-assist',
+          'classroom-analyser',
+          'football-analyser',
+          'patrolpro',
+        ],
+      },
+      {
+        name: 'Real-time AI Systems',
+        connectedProjects: [
+          'post-office-analyzer',
+          'cafe-analyzer',
+          'smart-classroom-assist',
+          'football-analyser',
+        ],
+      },
       { name: 'NLP' },
-      { name: 'Multimodal AI', connectedProjects: ['al-aql', 'weaver-ai'] },
-      { name: 'On-device Inference', connectedProjects: ['al-aql', 'offline-ai-chatbot'] },
+      {
+        name: 'Multimodal AI',
+        connectedProjects: ['al-aql', 'weaver-ai', 'smart-classroom-assist'],
+      },
+      {
+        name: 'On-device Inference',
+        connectedProjects: ['al-aql', 'offline-ai-chatbot'],
+      },
     ],
   },
   {
@@ -19,14 +54,50 @@ export const SKILLS_DATA: SkillCategoryGroup[] = [
     title: 'ML / DL Frameworks',
     description: 'Deep neural network training and edge inference libraries',
     skills: [
-      { name: 'PyTorch' },
+      {
+        name: 'YOLO',
+        connectedProjects: [
+          'post-office-analyzer',
+          'cafe-analyzer',
+          'smart-classroom-assist',
+          'classroom-analyser',
+          'football-analyser',
+          'patrolpro',
+        ],
+      },
+      {
+        name: 'OpenCV',
+        connectedProjects: [
+          'post-office-analyzer',
+          'cafe-analyzer',
+          'smart-classroom-assist',
+          'classroom-analyser',
+          'football-analyser',
+          'patrolpro',
+        ],
+      },
+      {
+        name: 'PyTorch',
+        connectedProjects: ['classroom-analyser'],
+      },
       { name: 'TensorFlow' },
-      { name: 'OpenCV', connectedProjects: ['smart-classroom-assist'] },
-      { name: 'YOLOv8', connectedProjects: ['post-office-analyzer', 'cafe-analyzer', 'smart-classroom-assist'] },
-      { name: 'YOLOv11', connectedProjects: ['post-office-analyzer', 'cafe-analyzer'] },
-      { name: 'MediaPipe' },
+      {
+        name: 'MediaPipe',
+        connectedProjects: ['smart-classroom-assist'],
+      },
+      {
+        name: 'ByteTrack',
+        connectedProjects: ['football-analyser'],
+      },
       { name: 'Scikit-learn' },
-      { name: 'HuggingFace Transformers' },
+      {
+        name: 'Random Forest',
+        connectedProjects: ['patrolpro'],
+      },
+      {
+        name: 'Hugging Face',
+        connectedProjects: ['al-aql'],
+      },
     ],
   },
   {
@@ -34,13 +105,31 @@ export const SKILLS_DATA: SkillCategoryGroup[] = [
     title: 'Generative AI & LLMs',
     description: 'Foundation model integration, fine-tuning, and alignment',
     skills: [
-      { name: 'Gemini API', connectedProjects: ['weaver-ai', 'routex-capital'] },
-      { name: 'Stable Diffusion' },
-      { name: 'ControlNet' },
+      {
+        name: 'Gemini API',
+        connectedProjects: ['weaver-ai', 'smart-classroom-assist', 'routex-capital'],
+      },
+      {
+        name: 'TinyLLaMA',
+        connectedProjects: ['al-aql'],
+      },
+      {
+        name: 'LoRA',
+        connectedProjects: ['al-aql'],
+      },
+      {
+        name: 'RLHF',
+        connectedProjects: ['al-aql'],
+      },
+      {
+        name: 'Stable Diffusion',
+        connectedProjects: ['al-aql'],
+      },
+      {
+        name: 'ControlNet',
+        connectedProjects: ['al-aql'],
+      },
       { name: 'ElevenLabs' },
-      { name: 'TinyLLaMA' },
-      { name: 'LoRA' },
-      { name: 'RLHF' },
       { name: 'SFT' },
       { name: 'TRL Trainer' },
     ],
@@ -50,11 +139,26 @@ export const SKILLS_DATA: SkillCategoryGroup[] = [
     title: 'Retrieval & Agents',
     description: 'Semantic vector indexing and autonomous tool orchestration',
     skills: [
-      { name: 'RAG', connectedProjects: ['rag-document-analyzer', 'offline-ai-chatbot'] },
-      { name: 'LlamaIndex', connectedProjects: ['rag-document-analyzer'] },
-      { name: 'ChromaDB', connectedProjects: ['rag-document-analyzer'] },
-      { name: 'LangChain' },
-      { name: 'MCP (Model Context Protocol)', connectedProjects: ['al-aql', 'blender-automation-mcp'] },
+      {
+        name: 'RAG',
+        connectedProjects: ['rag-document-analyzer', 'al-aql', 'offline-ai-chatbot'],
+      },
+      {
+        name: 'LlamaIndex',
+        connectedProjects: ['rag-document-analyzer', 'al-aql'],
+      },
+      {
+        name: 'ChromaDB',
+        connectedProjects: ['rag-document-analyzer', 'al-aql'],
+      },
+      {
+        name: 'MCP (Model Context Protocol)',
+        connectedProjects: ['al-aql', 'blender-automation-mcp'],
+      },
+      {
+        name: 'LangChain',
+        connectedProjects: ['al-aql'],
+      },
       { name: 'Groq API' },
     ],
   },
@@ -63,10 +167,37 @@ export const SKILLS_DATA: SkillCategoryGroup[] = [
     title: 'Languages',
     description: 'Core programming and scripting languages',
     skills: [
-      { name: 'Python' },
-      { name: 'Dart', connectedProjects: ['routex-capital'] },
-      { name: 'JavaScript' },
-      { name: 'SQL' },
+      {
+        name: 'Python',
+        connectedProjects: [
+          'weaver-ai',
+          'post-office-analyzer',
+          'cafe-analyzer',
+          'smart-classroom-assist',
+          'classroom-analyser',
+          'football-analyser',
+          'patrolpro',
+          'al-aql',
+          'blender-automation-mcp',
+        ],
+      },
+      {
+        name: 'Dart',
+        connectedProjects: [
+          'routex-capital',
+          'smart-classroom-assist',
+          'al-aql',
+          'patrolpro',
+        ],
+      },
+      {
+        name: 'JavaScript',
+        connectedProjects: ['weaver-ai', 'whack-a-mole'],
+      },
+      {
+        name: 'SQL',
+        connectedProjects: ['weaver-ai', 'al-aql'],
+      },
     ],
   },
   {
@@ -74,15 +205,36 @@ export const SKILLS_DATA: SkillCategoryGroup[] = [
     title: 'Backend & APIs',
     description: 'Distributed servers, real-time protocols, and databases',
     skills: [
-      { name: 'FastAPI' },
-      { name: 'Flask' },
-      { name: 'REST APIs' },
+      {
+        name: 'FastAPI',
+        connectedProjects: ['weaver-ai'],
+      },
+      {
+        name: 'Flask',
+        connectedProjects: ['patrolpro'],
+      },
+      {
+        name: 'REST APIs',
+        connectedProjects: ['weaver-ai', 'smart-classroom-assist'],
+      },
       { name: 'WebSockets' },
-      { name: 'Twilio' },
+      {
+        name: 'Twilio',
+        connectedProjects: ['weaver-ai', 'patrolpro'],
+      },
       { name: 'Supabase' },
-      { name: 'SQLite' },
-      { name: 'ngrok' },
-      { name: 'Deepgram' },
+      {
+        name: 'SQLite',
+        connectedProjects: ['weaver-ai', 'al-aql'],
+      },
+      {
+        name: 'ngrok',
+        connectedProjects: ['weaver-ai'],
+      },
+      {
+        name: 'Deepgram',
+        connectedProjects: ['weaver-ai'],
+      },
     ],
   },
   {
@@ -90,10 +242,29 @@ export const SKILLS_DATA: SkillCategoryGroup[] = [
     title: 'Frontend & Mobile',
     description: 'Client interfaces and automation utilities',
     skills: [
-      { name: 'Flutter', connectedProjects: ['routex-capital'] },
+      {
+        name: 'Flutter',
+        connectedProjects: [
+          'al-aql',
+          'smart-classroom-assist',
+          'routex-capital',
+          'patrolpro',
+        ],
+      },
+      {
+        name: 'Netlify',
+        connectedProjects: [
+          'smart-classroom-assist',
+          'patrolpro',
+          'money-mapper',
+        ],
+      },
+      {
+        name: 'Streamlit',
+        connectedProjects: ['al-aql'],
+      },
       { name: 'Gradio' },
       { name: 'PyAutoGUI' },
-      { name: 'Quill' },
     ],
   },
   {

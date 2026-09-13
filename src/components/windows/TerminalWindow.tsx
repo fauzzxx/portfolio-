@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { Terminal, Plus } from 'lucide-react';
 import { PROJECTS_DATA } from '../../data/projects';
 import { SKILLS_DATA } from '../../data/skills';
 
@@ -9,6 +10,7 @@ interface TerminalLine {
 
 const COMMANDS = [
   'help',
+  'dir',
   'ls',
   'projects',
   'ai-lab',
@@ -18,18 +20,20 @@ const COMMANDS = [
   'about',
   'resume',
   'contact',
+  'cls',
   'clear',
 ];
 
 export const TerminalWindow: React.FC = () => {
   const [input, setInput] = useState('');
   const [history, setHistory] = useState<TerminalLine[]>([
-    { type: 'system', text: 'FAUZAAN OS TERMINAL [v1.0.0-release]' },
-    { type: 'system', text: 'Type "help" to display available system commands.' },
+    { type: 'system', text: 'Windows PowerShell\nCopyright (C) Microsoft Corporation. All rights reserved.\n\nInstall the latest PowerShell for new features and improvements! https://aka.ms/PSWindows\n' },
+    { type: 'system', text: 'Type "help" or "dir" to view cataloged commands.\n' },
   ]);
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [historyPointer, setHistoryPointer] = useState<number>(-1);
   const bottomRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -74,127 +78,134 @@ export const TerminalWindow: React.FC = () => {
     setCommandHistory((prev) => [...prev, trimmed]);
     setHistoryPointer(-1);
 
-    const newHistory = [...history, { type: 'input' as const, text: `$ ${trimmed}` }];
+    const newHistory = [...history, { type: 'input' as const, text: `PS C:\\Users\\Fauzaan> ${trimmed}` }];
     const cmd = trimmed.toLowerCase();
 
     switch (cmd) {
       case 'help':
         newHistory.push({
           type: 'output',
-          text: `FAUZAAN OS SIMULATED SHELL
+          text: `FAUZAAN OS POWERSHELL TERMINAL
 Available commands:
-  help          - Display this command manual
-  ls            - List system directories and components
-  projects      - Display all cataloged platforms and projects
-  ai-lab        - Display autonomous & computer vision modules
-  skills        - List technical matrix & toolchains
-  experience    - Display professional roles & education
-  achievements  - Display national hackathons & awards
+  help          - Display this command reference
+  dir, ls       - List directories and system contents
+  projects      - List all 22 portfolio engineering projects
+  ai-lab        - List autonomous agents and computer vision models
+  skills        - List technical matrix across ML, backend, and languages
+  experience    - Display professional history and education
+  achievements  - Display national hackathon honors and awards
   about         - Display career objective & engineering philosophy
   resume        - Display curriculum vitae credentials
   contact       - Display communication channels
-  clear         - Clear the terminal screen
+  cls, clear    - Clear terminal buffer
 
 Tips:
-  - Use Up/Down arrows to recall previous commands.
-  - Press [Tab] to auto-complete commands.`,
+  - Press [Tab] to auto-complete commands.
+  - Press [Up/Down] arrows to navigate command history.`,
         });
         break;
 
+      case 'dir':
       case 'ls':
         newHistory.push({
           type: 'output',
-          text: `drwxr-xr-x  projects/            [${PROJECTS_DATA.length} systems]
-drwxr-xr-x  ai-lab/              [Computer Vision & Agents]
-drwxr-xr-x  skills/              [${SKILLS_DATA.reduce((acc, c) => acc + c.skills.length, 0)} competencies]
-drwxr-xr-x  experience/          [Market Now, Rubat AI, Codetech]
-drwxr-xr-x  achievements/        [SIH 2024 Winner ₹1,00,000]
--rw-r--r--  README.md            [System Documentation]
--rw-r--r--  resume.pdf           [Credential Verification]`,
+          text: `    Directory: C:\\Users\\Fauzaan
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----          9/9/2026   1:00 AM                Projects (${PROJECTS_DATA.length} systems)
+d-----          9/9/2026   1:00 AM                AI-Lab (Vision & LLM Platforms)
+d-----          9/9/2026   1:00 AM                Skills (${SKILLS_DATA.reduce((acc, c) => acc + c.skills.length, 0)} cataloged competencies)
+d-----          9/9/2026   1:00 AM                Experience (Work History & Osmania Univ)
+d-----          9/9/2026   1:00 AM                Achievements (SIH 2024 Winner ₹1,00,000)
+-a----          9/9/2026   1:00 AM           4096 Resume.pdf
+-a----          9/9/2026   1:00 AM           2048 README.md`,
         });
         break;
 
-      case 'projects':
+      case 'projects': {
+        const categories = [
+          { key: 'web-development', label: 'Web Development' },
+          { key: 'ai-automation', label: 'AI Automation & Intelligence' },
+          { key: 'app-development', label: 'App Development' },
+          { key: 'experiments', label: 'Experiments' },
+        ];
+        const lines = [`ENGINEERING PROJECTS PORTFOLIO (${PROJECTS_DATA.length} systems):`];
+        for (const cat of categories) {
+          const catProjects = PROJECTS_DATA.filter((p) => p.category === cat.key);
+          if (catProjects.length > 0) {
+            lines.push(`\n[${cat.label}]`);
+            catProjects.forEach((p) => {
+              const liveTag = p.liveDemoUrl || p.liveUrl ? ' [LIVE DEMO]' : '';
+              lines.push(`  • ${p.title.padEnd(25)} - ${p.tagline}${liveTag}`);
+            });
+          }
+        }
         newHistory.push({
           type: 'output',
-          text: `SYSTEM PROJECTS CATALOG (${PROJECTS_DATA.length} modules):
-
-[WEB DEVELOPMENT]
-- Alpha Omega               : E-Commerce Fashion Platform (Tier 1)
-- SIOUGE                    : Luxury Perfume Storefront
-- Crestline Capital         : Structured Bulk Buying Platform
-- Ammu's Pets & Kennels     : Marketplace & Kennel Hub
-
-[AI AUTOMATION & INTELLIGENCE]
-- Post Office Analyzer      : Computer Vision Queue Analytics (YOLO)
-- Cafe Analyzer             : Smart Hospitality & Flow System (YOLO)
-- RAG Document Analyzer     : Knowledge Retrieval (LlamaIndex, ChromaDB)
-- Weaver AI                 : Autonomous Website Generator & Vercel Deployer
-- MarketNOW                 : AI-Powered SEO & GEO Intelligence
-
-[APP DEVELOPMENT]
-- RouteX Capital            : Cross-Border Financial Intelligence (Flutter, Gemini)
-- Smart Classroom Assist    : Vision Attendance & Manimator Animations
-- AL-AQL                    : Offline AI Assistant & MCP Creative Engine
-- Offline AI Chatbot        : Edge Document Intelligence
-- Mahdaviat                 : Islamic Knowledge & Community Platform
-
-[EXPERIMENTS]
-- Football Analyzer         : Computer vision pitch tracking
-- AI Drawing Challenge      : Real-time neural sketch classifier
-- Blender MCP Automation    : Prompt-to-3D via Model Context Protocol
-- Whack-a-Mole              : Reactive physics arcade
-- Blinker Word              : RSVP speed-reading prototype`,
+          text: lines.join('\n'),
         });
         break;
+      }
 
-      case 'ai-lab':
+      case 'ai-lab': {
+        const aiSystems = [
+          { name: 'AL-AQL', desc: 'Offline Multimodal AI Assistant (TinyLLaMA, LoRA, SD, MCP)' },
+          { name: 'Weaver AI', desc: 'Real-Time Conversational Voice Agent (Gemini 2.5 Flash, Deepgram)' },
+          { name: 'MarketNOW', desc: 'Generative Engine Optimization (GEO) Multi-Model Platform' },
+          { name: 'Post Office Analyser', desc: 'Computer Vision Queue & Workflow Analytics (YOLO, OpenCV)' },
+          { name: 'Cafe Analyser', desc: 'Hospitality & Customer Flow Intelligence (YOLOv8, OpenCV)' },
+          { name: 'Smart Classroom Assist', desc: 'Classroom Monitoring & Attendance [LIVE DEMO]' },
+          { name: 'Classroom Analyser', desc: 'Student Engagement & Attention Analysis (PyTorch, Custom YOLO)' },
+          { name: 'Football Analyser', desc: 'AI Tactical Match Intelligence & Tracking (ByteTrack, YOLO)' },
+          { name: 'PatrolPro', desc: 'Waste Management & Civil Monitoring [LIVE DEMO]' },
+          { name: 'RAG Document Analyzer', desc: 'Semantic Document Search (LlamaIndex, ChromaDB)' },
+          { name: 'Offline AI Chatbot', desc: 'Offline Document Intelligence & Local Q&A' },
+        ];
+        const lines = [
+          `AI LAB & INTELLIGENCE ARCHITECTURES (${aiSystems.length} systems):`,
+          ...aiSystems.map((s, idx) => `${String(idx + 1).padStart(2, ' ')}. ${s.name.padEnd(24)} [${s.desc}]`),
+        ];
         newHistory.push({
           type: 'output',
-          text: `AI LAB MODULES ONLINE:
-1. Weaver AI                 [Gemini API, Cloud AI, Voice Prompting]
-2. MarketNOW                 [SEO & Generative Engine Optimization]
-3. Post Office Analyzer      [YOLOv8/11, Computer Vision, Queue Flow]
-4. Cafe Analyzer             [YOLO, Table Occupancy Analytics]
-5. RAG Document Analyzer     [LlamaIndex, ChromaDB Vector Index]`,
+          text: lines.join('\n'),
         });
         break;
+      }
 
       case 'skills':
         newHistory.push({
           type: 'output',
-          text: `TECHNICAL SKILLS MATRIX:
-- Core AI: Computer Vision, Object Tracking, Real-time Systems, Multimodal AI, On-device Inference
-- ML/DL: PyTorch, TensorFlow, OpenCV, YOLOv8/11, MediaPipe, Scikit-learn, HuggingFace
-- GenAI & LLMs: Gemini API, Stable Diffusion, ControlNet, ElevenLabs, TinyLLaMA, LoRA, RLHF
-- Retrieval & Agents: RAG, LlamaIndex, ChromaDB, LangChain, MCP (Model Context Protocol), Groq
-- Languages: Python, Dart, JavaScript, SQL
-- Backend: FastAPI, Flask, REST APIs, WebSockets, Supabase, Twilio, SQLite
-- Frontend & Mobile: Flutter, Gradio, PyAutoGUI`,
+          text: `TECHNICAL SKILLS INVENTORY:
+• Artificial Intelligence & ML : Computer Vision, YOLOv8/11, PyTorch, OpenCV, TensorFlow, Multimodal AI
+• GenAI & Agentic Systems     : Gemini API, RAG, LlamaIndex, ChromaDB, Stable Diffusion, MCP
+• Languages                   : Python, Dart, JavaScript, SQL
+• Backend & Systems           : FastAPI, Flask, REST APIs, WebSockets, Supabase, SQLite
+• Frontend & Mobile           : React, Flutter, Tailwind CSS, TypeScript`,
         });
         break;
 
       case 'experience':
         newHistory.push({
           type: 'output',
-          text: `PROFESSIONAL EXPERIENCE:
-- Senior Backend Developer    : Market Now
-- Freelance Software Developer : Independent Contractor
-- Senior Backend Developer    : Rubat AI
-- Data Analyst Intern         : Codetech IT Solution
+          text: `PROFESSIONAL HISTORY:
+• Senior Backend Developer     : Market Now (Feb 2026 - Sep 2026)
+• Freelance Software Developer : Independent Contractor
+• Backend Developer Intern     : Rubat AI (Oct 2026)
+• Data Analyst Intern          : Codetech IT Solution
 
 EDUCATION:
-- Osmania University          : B.Tech in Computer Science Engineering (GPA: 8.32 / 10.0)
-- IIPS Riyadh, KSA            : Higher Secondary Class XII (88.8%, Graduated 2022)`,
+• Osmania University           : B.Tech in Computer Science Engineering (GPA: 8.32 / 10.0)
+• IIPS Riyadh, KSA             : Higher Secondary Class XII (88.8%, Graduated 2022)`,
         });
         break;
 
       case 'achievements':
         newHistory.push({
           type: 'output',
-          text: `NATIONAL ACHIEVEMENTS & AWARDS:
+          text: `HONORS & RECOGNITIONS:
 ★ Smart India Hackathon 2024 — WINNER (₹1,00,000 Cash Prize)
-  Organized by Ministry of Education & AICTE, Government of India
+  National Champions, Ministry of Education & AICTE, Government of India
 ★ Best Innovative Idea — NSAKCET's HackEnvision 2.0
 ★ Job Offer Recipient — Innovator's Fest 24
 ★ Best Project of II Year — Innovatia Panoply
@@ -207,7 +218,7 @@ EDUCATION:
       case 'about':
         newHistory.push({
           type: 'output',
-          text: `OBJECTIVE:
+          text: `ENGINEERING PROFILE:
 "Passionate about Computer Vision, Artificial Intelligence, and Machine Learning,
 with a strong interest in building intelligent systems and exploring the potential
 of emerging technologies such as Agentic AI tools. Enthusiastic about applying
@@ -219,18 +230,20 @@ knowledge in advanced deep learning techniques."`,
       case 'resume':
         newHistory.push({
           type: 'output',
-          text: `Resume viewer active. Access via the Resume app icon on the desktop or dock.`,
+          text: `Official CV viewer ready. Launch the "Resume" icon on the desktop.`,
         });
         break;
 
       case 'contact':
         newHistory.push({
           type: 'output',
-          text: `CONTACT CHANNELS:
-Official email and social channels open. Launch the Contact app from the desktop.`,
+          text: `CONTACT:
+Email: Fauzaan (via Contact app on desktop)
+Location: Hyderabad, India`,
         });
         break;
 
+      case 'cls':
       case 'clear':
         setHistory([]);
         setInput('');
@@ -239,7 +252,7 @@ Official email and social channels open. Launch the Contact app from the desktop
       default:
         newHistory.push({
           type: 'error',
-          text: `Command not found: "${trimmed}". Type "help" for a list of valid commands.`,
+          text: `${trimmed} : The term '${trimmed}' is not recognized as the name of a cmdlet, function, or script file. Check the spelling or type 'help'.`,
         });
         break;
     }
@@ -249,47 +262,67 @@ Official email and social channels open. Launch the Contact app from the desktop
   };
 
   return (
-    <div className="h-full flex flex-col p-4 bg-black/95 font-mono text-xs select-text">
-      {/* Scrollable history */}
-      <div className="flex-1 overflow-auto space-y-2 leading-relaxed">
+    <div
+      className="h-full flex flex-col bg-[#0c0c0c] text-[#cccccc] font-mono text-xs select-text"
+      onClick={() => inputRef.current?.focus()}
+    >
+      {/* Windows Terminal Tab Strip */}
+      <div className="h-8 px-2 bg-[#1f1f1f] border-b border-white/10 flex items-center gap-1 select-none shrink-0">
+        <div className="flex items-center gap-2 px-3 py-1 bg-[#0c0c0c] text-white rounded-t border-t border-x border-white/10 text-[11px]">
+          <Terminal className="w-3.5 h-3.5 text-blue-400" />
+          <span>PowerShell</span>
+        </div>
+        <button
+          title="New Tab"
+          className="p-1 text-white/50 hover:text-white hover:bg-white/10 rounded"
+        >
+          <Plus className="w-3.5 h-3.5" />
+        </button>
+      </div>
+
+      {/* Terminal Output Area */}
+      <div className="flex-1 overflow-y-auto p-3.5 space-y-1 win-scrollbar">
         {history.map((line, idx) => (
           <div
             key={idx}
-            className={`whitespace-pre-wrap ${
+            className={`whitespace-pre-wrap leading-relaxed ${
               line.type === 'input'
-                ? 'text-os-accent font-semibold'
+                ? 'text-[#f1f1f1] font-semibold'
                 : line.type === 'error'
-                ? 'text-os-rose'
+                ? 'text-[#e81123]'
                 : line.type === 'system'
-                ? 'text-os-dim'
-                : 'text-os-text/90'
+                ? 'text-[#888888]'
+                : 'text-[#d4d4d4]'
             }`}
           >
             {line.text}
           </div>
         ))}
         <div ref={bottomRef} />
-      </div>
 
-      {/* Terminal prompt input */}
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleCommand(input);
-        }}
-        className="mt-2 pt-2 border-t border-os-border/50 flex items-center space-x-2"
-      >
-        <span className="text-os-emerald font-bold">visitor@fauzaan-os:~$</span>
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={handleKeyDown}
-          autoFocus
-          className="flex-1 bg-transparent text-os-text outline-none font-mono text-xs caret-os-accent"
-          placeholder="type a command... (try 'projects' or 'help')"
-        />
-      </form>
+        {/* Live Input Line */}
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleCommand(input);
+          }}
+          className="flex items-center gap-2 pt-1"
+        >
+          <span className="text-[#3a96dd] font-semibold shrink-0">
+            PS C:\Users\Fauzaan&gt;
+          </span>
+          <input
+            ref={inputRef}
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={handleKeyDown}
+            autoFocus
+            className="flex-1 bg-transparent text-white outline-none border-none font-mono text-xs caret-white p-0"
+            spellCheck={false}
+          />
+        </form>
+      </div>
     </div>
   );
 };

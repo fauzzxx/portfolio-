@@ -115,6 +115,17 @@ export const SYSTEM_APPS: AppMetadata[] = [
     defaultHeight: 500,
   },
   {
+    id: 'timeline',
+    title: 'Career Timeline',
+    shortTitle: 'Timeline',
+    icon: 'History',
+    category: 'profile',
+    description: 'Academic milestones, awards, hackathons, and career progression',
+    defaultWidth: 860,
+    defaultHeight: 600,
+    featured: true,
+  },
+  {
     id: 'settings',
     title: 'Settings',
     shortTitle: 'Settings',

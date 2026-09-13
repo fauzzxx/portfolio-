@@ -1,86 +1,91 @@
 import React from 'react';
-import { FileCode2 } from 'lucide-react';
 
 export const ReadmeWindow: React.FC = () => {
   return (
-    <div className="p-4 sm:p-6 max-w-4xl mx-auto space-y-6 font-mono text-xs select-text">
-      {/* Header */}
-      <div className="flex items-center space-x-3 pb-4 border-b border-os-border text-os-muted">
-        <FileCode2 className="w-5 h-5 text-os-accent" />
-        <span className="text-xs">README.md — FAUZAAN_OS_MANUAL [v1.0.0]</span>
+    <div className="flex flex-col h-full bg-white dark:bg-[#1e1e1e] text-win-text-light dark:text-win-text-dark font-mono text-xs select-text">
+      {/* Notepad Menu Bar */}
+      <div className="h-7 px-3 border-b border-black/10 dark:border-white/10 bg-[#f8f8f8] dark:bg-[#252525] flex items-center gap-4 text-xs font-sans text-win-text-light dark:text-win-text-dark select-none shrink-0">
+        <span className="hover:bg-black/5 dark:hover:bg-white/10 px-1.5 py-0.5 rounded cursor-pointer">File</span>
+        <span className="hover:bg-black/5 dark:hover:bg-white/10 px-1.5 py-0.5 rounded cursor-pointer">Edit</span>
+        <span className="hover:bg-black/5 dark:hover:bg-white/10 px-1.5 py-0.5 rounded cursor-pointer">View</span>
       </div>
 
-      <div className="space-y-6 leading-relaxed text-os-muted">
+      {/* Notepad Text Canvas */}
+      <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 win-scrollbar leading-relaxed">
         <div>
-          <h1 className="text-xl sm:text-2xl font-bold text-os-text mb-2"># FAUZAAN OS</h1>
-          <p className="text-os-text/90 text-sm">
-            Personal operating system for exploring the work, experiments, ideas, and journey of Fauzaan.
-          </p>
+          <div className="text-sm font-bold text-win-text-light dark:text-win-text-dark mb-1">
+            # FAUZAAN OS — Personal Operating System
+          </div>
+          <div className="text-win-muted-light dark:text-win-muted-dark">
+            Personal workstation for exploring the engineering, experiments, architecture, and journey of SK Fauzaan.
+          </div>
         </div>
 
-        {/* Philosophy */}
-        <div className="p-4 rounded-xl bg-os-card border border-os-border space-y-2">
-          <h2 className="text-xs uppercase tracking-wider text-os-accent font-bold">
+        <div className="border-t border-black/10 dark:border-white/10 pt-3">
+          <div className="font-bold text-win-text-light dark:text-win-text-dark mb-1">
             ## Philosophy
-          </h2>
-          <p className="text-sm text-os-text italic">
+          </div>
+          <div className="italic text-win-accent">
             Build. Break. Learn. Repeat.
-          </p>
-          <p className="text-xs text-os-dim pt-1">
-            "Not everything I build starts as a product. Some things start as experiments. And all of that becomes experience."
-          </p>
+          </div>
+          <div className="text-win-muted-light dark:text-win-muted-dark text-[11.5px] mt-1">
+            "Not everything I build starts as a commercial product. Some things begin as rapid experiments to master cutting-edge primitives — all contributing to high-performance production engineering."
+          </div>
         </div>
 
-        {/* System Architecture */}
-        <div className="p-4 rounded-xl bg-os-card border border-os-border space-y-3">
-          <h2 className="text-xs uppercase tracking-wider text-os-emerald font-bold">
-            ## System Architecture
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-            <div className="p-3 rounded-lg bg-os-surface/70 border border-os-border/70 space-y-1">
-              <span className="text-os-accent font-bold block">01. Web Development</span>
-              <p className="text-os-dim text-[11px]">
-                High-scale e-commerce, transaction logic, and bulk buying platforms.
-              </p>
+        <div className="border-t border-black/10 dark:border-white/10 pt-3">
+          <div className="font-bold text-win-text-light dark:text-win-text-dark mb-2">
+            ## System Architecture & Application Catalog
+          </div>
+          <div className="space-y-2 text-win-text-light dark:text-win-text-dark">
+            <div>
+              <strong className="text-win-accent">01. Web Development Platforms</strong>
+              <div className="text-win-muted-light dark:text-win-muted-dark text-[11px]">
+                High-scale e-commerce, transaction logic, and bulk buying platforms (Alpha Omega, SIOUGE, Crestline Capital, Ammu's Pets).
+              </div>
             </div>
-            <div className="p-3 rounded-lg bg-os-surface/70 border border-os-border/70 space-y-1">
-              <span className="text-os-emerald font-bold block">02. AI Automation & Intelligence</span>
-              <p className="text-os-dim text-[11px]">
-                Computer vision queue analytics, Generative Engine Optimization, and Weaver AI.
-              </p>
+
+            <div>
+              <strong className="text-emerald-600 dark:text-emerald-400">02. AI Automation & Machine Learning</strong>
+              <div className="text-win-muted-light dark:text-win-muted-dark text-[11px]">
+                Computer vision queue flow analytics (Post Office Analyzer, Cafe Crowd Analyzer), Generative Engine Optimization (MarketNOW), and Weaver AI.
+              </div>
             </div>
-            <div className="p-3 rounded-lg bg-os-surface/70 border border-os-border/70 space-y-1">
-              <span className="text-os-neural font-bold block">03. App Development & Edge</span>
-              <p className="text-os-dim text-[11px]">
-                RouteX Capital (Flutter), Smart Classroom Assist, AL-AQL, and Mahdaviat.
-              </p>
+
+            <div>
+              <strong className="text-blue-500">03. Mobile Apps & Edge Intelligence</strong>
+              <div className="text-win-muted-light dark:text-win-muted-dark text-[11px]">
+                RouteX Capital (Flutter/Gemini), Smart Classroom Assist, AL-AQL offline agent, and Mahdaviat Islamic knowledge platform.
+              </div>
             </div>
-            <div className="p-3 rounded-lg bg-os-surface/70 border border-os-border/70 space-y-1">
-              <span className="text-os-amber font-bold block">04. Creative Experiments</span>
-              <p className="text-os-dim text-[11px]">
-                Blender MCP tool calling, Football Analyzer, and reactive arcade physics.
-              </p>
+
+            <div>
+              <strong className="text-amber-600 dark:text-amber-400">04. Creative Experiments & Lab Tools</strong>
+              <div className="text-win-muted-light dark:text-win-muted-dark text-[11px]">
+                Blender MCP 3D tool calling, Football pitch tracker, and interactive neural classifier.
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Exploration Modes */}
-        <div className="p-4 rounded-xl bg-os-card border border-os-border space-y-2">
-          <h2 className="text-xs uppercase tracking-wider text-os-text font-bold">
-            ## How to Explore
-          </h2>
-          <ul className="space-y-1 text-xs text-os-text/90">
-            <li>
-              <strong className="text-os-accent">Explore Mode:</strong> Click any desktop icon or use the dock launcher to explore applications freely.
-            </li>
-            <li>
-              <strong className="text-os-emerald">Guided Experience:</strong> Launch the cinematic tour from the desktop or dock to walk through all 26 chapters with project walkthroughs and narration infrastructure.
-            </li>
-            <li>
-              <strong className="text-os-dim">Terminal Mode:</strong> Open the terminal and type <code className="text-os-accent bg-os-surface px-1 py-0.5 rounded">help</code> or <code className="text-os-accent bg-os-surface px-1 py-0.5 rounded">projects</code> for direct text interaction.
-            </li>
-          </ul>
+        <div className="border-t border-black/10 dark:border-white/10 pt-3">
+          <div className="font-bold text-win-text-light dark:text-win-text-dark mb-1">
+            ## How to Navigate
+          </div>
+          <div className="text-win-muted-light dark:text-win-muted-dark text-[11.5px] space-y-1">
+            <div>• Free Explore Mode: Multitask across all 12 desktop programs, minimize and arrange windows.</div>
+            <div>• Guided Presentation: Click the Quick Settings or Desktop icon to take the cinematic 26-chapter walkthrough.</div>
+            <div>• Windows Terminal: Open the PowerShell terminal and run `help`, `projects`, or `dir`.</div>
+          </div>
         </div>
+      </div>
+
+      {/* Notepad Status Bar */}
+      <div className="h-6 px-3 border-t border-black/10 dark:border-white/10 bg-[#f8f8f8] dark:bg-[#252525] flex items-center justify-between text-[11px] font-sans text-win-muted-light dark:text-win-muted-dark select-none shrink-0">
+        <span>Ln 42, Col 1</span>
+        <span>100%</span>
+        <span>Windows (CRLF)</span>
+        <span>UTF-8</span>
       </div>
     </div>
   );

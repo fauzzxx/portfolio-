@@ -18,12 +18,21 @@ export interface Project {
   techStack: string[];
   screenshots: string[];
   videos: string[];
+  videoUrls?: string[];
+  videoUrl?: string;
   audio?: string;
+  audioUrl?: string;
   githubUrl?: string;
   liveUrl?: string;
+  liveDemoUrl?: string;
   challenges: string[];
   outcomes: string[];
   lessons: string[];
   featured: boolean;
   tier: ProjectTier;
+  dnaNodes?: { label: string; value: string }[];
+  buildTrace?: { stage: string; description: string }[];
+  demonstrates?: string[];
+  motivation?: string;
 }
+

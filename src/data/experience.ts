@@ -5,7 +5,8 @@ export const EXPERIENCES_DATA: ExperienceItem[] = [
     id: 'exp-marketnow',
     role: 'Senior Backend Developer',
     company: 'Market Now',
-    placeholderNotice: 'Experience details and timeline will be added.',
+    period: 'Feb 2026 - Sep 2026',
+    placeholderNotice: 'Backend engineering and API architecture for Generative Engine Optimization.',
   },
   {
     id: 'exp-freelance',
@@ -15,14 +16,17 @@ export const EXPERIENCES_DATA: ExperienceItem[] = [
   },
   {
     id: 'exp-rubatai',
-    role: 'Senior Backend Developer',
+    role: 'Backend Developer Intern',
     company: 'Rubat AI',
-    placeholderNotice: 'Experience details and architecture scope will be added.',
+    type: 'Internship',
+    period: 'Oct 2026',
+    placeholderNotice: 'Backend development internship focused on API services and system workflows.',
   },
   {
     id: 'exp-codetech',
     role: 'Data Analyst Intern',
     company: 'Codetech IT Solution',
+    type: 'Internship',
     placeholderNotice: 'Internship details and analysis workflows will be added.',
   },
 ];

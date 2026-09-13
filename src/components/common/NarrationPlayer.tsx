@@ -81,9 +81,9 @@ export const NarrationPlayer: React.FC<NarrationPlayerProps> = ({
 
   return (
     <div
-      className={`p-4 rounded-xl bg-os-card/90 border border-os-border space-y-3 font-mono text-xs select-none ${className}`}
+      className={`p-3.5 rounded-lg border border-black/10 dark:border-white/10 bg-white dark:bg-[#242424] space-y-3 text-xs select-none text-win-text-light dark:text-win-text-dark ${className}`}
     >
-      {/* Hidden audio element */}
+      {/* Audio element */}
       {audioSrc && (
         <audio
           ref={audioRef}
@@ -95,39 +95,39 @@ export const NarrationPlayer: React.FC<NarrationPlayerProps> = ({
         />
       )}
 
-      {/* Header Info */}
-      <div className="flex items-center justify-between pb-2 border-b border-os-border/50">
+      {/* Header */}
+      <div className="flex items-center justify-between pb-2 border-b border-black/5 dark:border-white/5">
         <div className="flex items-center space-x-2 truncate pr-2">
-          <div className="p-1.5 rounded-md bg-os-surface border border-os-border text-os-accent">
+          <div className="w-6 h-6 rounded bg-win-accent/10 text-win-accent flex items-center justify-center shrink-0">
             <Mic className="w-3.5 h-3.5" />
           </div>
           <div className="truncate">
-            <span className="text-[10px] text-os-dim uppercase tracking-wider block">
-              {chapterTitle || 'Project Narration Channel'}
+            <span className="text-[10px] text-win-muted-light dark:text-win-muted-dark uppercase tracking-wider block font-medium">
+              {chapterTitle || 'Voice Commentary'}
             </span>
-            <span className="font-semibold text-os-text truncate block">
+            <span className="font-semibold text-win-text-light dark:text-win-text-dark truncate block">
               {projectTitle || 'System Walkthrough'}
             </span>
           </div>
         </div>
 
-        {/* Transcript toggle button */}
+        {/* Captions toggle button */}
         {transcript && (
           <button
             onClick={() => setShowTranscript(!showTranscript)}
-            className={`flex items-center space-x-1 px-2 py-1 rounded border transition-colors ${
+            className={`flex items-center space-x-1 px-2 py-1 rounded border text-[11px] transition-colors ${
               showTranscript
-                ? 'bg-os-accent/20 border-os-accent text-os-text font-bold'
-                : 'bg-os-surface border-os-border text-os-muted hover:text-os-text'
+                ? 'bg-win-accent text-white border-win-accent font-medium'
+                : 'border-black/10 dark:border-white/10 text-win-muted-light dark:text-win-muted-dark hover:text-win-text-light dark:hover:text-win-text-dark'
             }`}
           >
             <FileText className="w-3 h-3" />
-            <span className="text-[10px]">Captions</span>
+            <span>Captions</span>
           </button>
         )}
       </div>
 
-      {/* Audio Status or Controls */}
+      {/* Controls or Notice */}
       {isAudioAvailable ? (
         <div className="space-y-2">
           <input
@@ -136,47 +136,47 @@ export const NarrationPlayer: React.FC<NarrationPlayerProps> = ({
             max="100"
             value={progress}
             onChange={handleSeek}
-            className="w-full h-1 bg-white/10 rounded-lg appearance-none cursor-pointer accent-os-accent"
+            className="w-full h-1 bg-black/10 dark:bg-white/15 rounded-lg appearance-none cursor-pointer accent-win-accent"
           />
 
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <button
                 onClick={togglePlay}
-                className="w-7 h-7 rounded-lg bg-os-surface border border-os-border hover:border-os-accent flex items-center justify-center text-os-text transition-colors"
+                className="w-7 h-7 rounded-md bg-win-accent hover:bg-win-accent-hover text-white flex items-center justify-center transition-colors shadow-sm"
               >
                 {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5 ml-0.5" />}
               </button>
               <button
                 onClick={handleReplay}
-                className="p-1 rounded text-os-muted hover:text-os-text transition-colors"
+                className="p-1 rounded text-win-muted-light dark:text-win-muted-dark hover:text-win-text-light dark:hover:text-win-text-dark transition-colors"
               >
                 <RotateCcw className="w-3 h-3" />
               </button>
               <button
                 onClick={toggleMute}
-                className="p-1 rounded text-os-muted hover:text-os-text transition-colors"
+                className="p-1 rounded text-win-muted-light dark:text-win-muted-dark hover:text-win-text-light dark:hover:text-win-text-dark transition-colors"
               >
                 {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
               </button>
             </div>
 
-            <span className="text-[10px] text-os-dim font-mono">
+            <span className="text-[10px] text-win-muted-light dark:text-win-muted-dark font-mono">
               {formatTime(currentTime)} / {formatTime(duration)}
             </span>
           </div>
         </div>
       ) : (
-        <div className="p-2.5 rounded-lg bg-os-surface/60 border border-os-border/50 flex items-center space-x-2 text-os-dim text-[11px]">
-          <Info className="w-3.5 h-3.5 text-os-muted shrink-0" />
-          <span>Voice narration coming soon. (Audio track will be integrated).</span>
+        <div className="p-2.5 rounded bg-black/[0.02] dark:bg-white/[0.02] border border-black/5 dark:border-white/5 flex items-center space-x-2 text-win-muted-light dark:text-win-muted-dark text-[11px]">
+          <Info className="w-3.5 h-3.5 text-win-accent shrink-0" />
+          <span>Voice narration coming soon.</span>
         </div>
       )}
 
-      {/* Captions / Transcript drawer */}
+      {/* Transcript Drawer */}
       {showTranscript && transcript && (
-        <div className="p-3 rounded-lg bg-os-surface/80 border border-os-border/70 text-xs text-os-muted leading-relaxed select-text max-h-36 overflow-y-auto">
-          <span className="text-[10px] uppercase font-mono text-os-dim block mb-1">
+        <div className="p-3 rounded bg-black/[0.03] dark:bg-white/[0.03] border border-black/10 dark:border-white/10 text-xs text-win-text-light dark:text-win-text-dark leading-relaxed select-text max-h-36 overflow-y-auto win-scrollbar">
+          <span className="text-[10px] uppercase font-semibold text-win-muted-light dark:text-win-muted-dark block mb-1">
             Transcript / Captions:
           </span>
           <p>{transcript}</p>

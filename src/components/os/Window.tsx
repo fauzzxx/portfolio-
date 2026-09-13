@@ -39,15 +39,15 @@ export const Window: React.FC<WindowProps> = ({
       dragListener={false}
       dragControls={dragControls}
       dragMomentum={false}
-      dragElastic={0.05}
-      initial={{ opacity: 0, scale: 0.95, y: 15 }}
+      dragElastic={0.03}
+      initial={{ opacity: 0, scale: 0.96, y: 10 }}
       animate={{
         opacity: 1,
         scale: 1,
         y: 0,
-        transition: { duration: 0.18, ease: [0.16, 1, 0.3, 1] },
+        transition: { duration: 0.16, ease: [0.16, 1, 0.3, 1] },
       }}
-      exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.12 } }}
+      exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.1 } }}
       onPointerDown={onFocus}
       style={{
         zIndex: windowState.zIndex,
@@ -57,9 +57,9 @@ export const Window: React.FC<WindowProps> = ({
               top: 0,
               left: 0,
               right: 0,
-              bottom: 56, // taskbar height
+              bottom: 48, // taskbar height
               width: '100vw',
-              height: 'calc(100vh - 56px)',
+              height: 'calc(100vh - 48px)',
               transform: 'none',
             }
           : {
@@ -68,17 +68,21 @@ export const Window: React.FC<WindowProps> = ({
               top: windowState.position.y,
               width: windowState.size.width,
               height: windowState.size.height,
-              maxWidth: 'calc(100vw - 20px)',
-              maxHeight: 'calc(100vh - 80px)',
+              maxWidth: 'calc(100vw - 16px)',
+              maxHeight: 'calc(100vh - 64px)',
             }),
       }}
-      className={`flex flex-col bg-os-surface/95 backdrop-blur-md rounded-lg overflow-hidden transition-shadow duration-200 border ${
+      className={`flex flex-col overflow-hidden transition-shadow duration-150 border ${
         isActive
-          ? 'border-os-accent/40 shadow-window-active'
-          : 'border-os-border shadow-window'
-      } ${isMaximized ? 'rounded-none border-t-0 border-x-0' : ''}`}
+          ? 'border-[#0078d4]/40 dark:border-[#0078d4]/40 shadow-2xl ring-1 ring-black/5 dark:ring-white/5'
+          : 'border-black/15 dark:border-white/10 shadow-xl'
+      } ${
+        isMaximized
+          ? 'rounded-none border-t-0 border-x-0'
+          : 'rounded-lg'
+      }`}
     >
-      {/* OS Window Titlebar Header */}
+      {/* Windows 11 Titlebar */}
       <div
         onPointerDown={(e) => {
           onFocus();
@@ -87,54 +91,49 @@ export const Window: React.FC<WindowProps> = ({
           }
         }}
         onDoubleClick={onToggleMaximize}
-        className={`h-10 px-3.5 flex items-center justify-between select-none border-b cursor-grab active:cursor-grabbing transition-colors duration-150 ${
+        className={`h-[34px] pl-3 flex items-center justify-between select-none border-b cursor-default transition-colors duration-100 ${
           isActive
-            ? 'bg-os-card/90 border-os-border text-os-text'
-            : 'bg-os-surface/80 border-os-border/60 text-os-muted'
+            ? 'bg-[#f0f0f0]/95 dark:bg-[#242424]/95 border-black/10 dark:border-white/10 text-win-text-light dark:text-win-text-dark'
+            : 'bg-[#f7f7f7]/90 dark:bg-[#1c1c1c]/90 border-black/5 dark:border-white/5 text-win-muted-light dark:text-win-muted-dark'
         }`}
       >
-        {/* Left: App Identity */}
-        <div className="flex items-center space-x-2.5 min-w-0">
-          <div
-            className={`w-5 h-5 flex items-center justify-center rounded transition-colors ${
-              isActive ? 'text-os-accent' : 'text-os-muted'
-            }`}
-          >
-            <AppIcon name={windowState.icon} className="w-4 h-4" />
+        {/* Left: Window App Identity */}
+        <div className="flex items-center space-x-2.5 min-w-0 pr-2 pointer-events-none">
+          <div className="w-4 h-4 flex items-center justify-center shrink-0">
+            <AppIcon name={windowState.icon} className="w-3.5 h-3.5" />
           </div>
-          <span className="text-xs font-semibold tracking-wide truncate font-mono">
+          <span className="text-[11.5px] font-medium tracking-normal truncate text-win-text-light dark:text-win-text-dark">
             {windowState.title}
           </span>
-          {isActive && (
-            <span className="inline-block w-1.5 h-1.5 rounded-full bg-os-accent animate-pulse" />
-          )}
         </div>
 
-        {/* Right: Window Controls */}
+        {/* Right: Windows Controls (Minimize, Maximize, Close) */}
         <div
-          className="flex items-center space-x-1"
+          className="flex items-center h-full shrink-0"
           onPointerDown={(e) => e.stopPropagation()}
         >
-          {/* Minimize Button */}
+          {/* Minimize */}
           <button
             onClick={(e) => {
               e.stopPropagation();
               onMinimize();
             }}
             title="Minimize"
-            className="w-7 h-7 flex items-center justify-center rounded text-os-muted hover:text-os-text hover:bg-white/5 active:bg-white/10 transition-colors"
+            aria-label="Minimize window"
+            className="w-11 h-full flex items-center justify-center text-win-muted-light dark:text-win-muted-dark hover:bg-black/5 dark:hover:bg-white/10 hover:text-win-text-light dark:hover:text-win-text-dark transition-colors"
           >
             <Minus className="w-3.5 h-3.5" />
           </button>
 
-          {/* Maximize / Restore Button */}
+          {/* Maximize / Restore */}
           <button
             onClick={(e) => {
               e.stopPropagation();
               onToggleMaximize();
             }}
-            title={isMaximized ? 'Restore' : 'Maximize'}
-            className="w-7 h-7 flex items-center justify-center rounded text-os-muted hover:text-os-text hover:bg-white/5 active:bg-white/10 transition-colors hidden sm:flex"
+            title={isMaximized ? 'Restore Down' : 'Maximize'}
+            aria-label={isMaximized ? 'Restore Down' : 'Maximize'}
+            className="w-11 h-full flex items-center justify-center text-win-muted-light dark:text-win-muted-dark hover:bg-black/5 dark:hover:bg-white/10 hover:text-win-text-light dark:hover:text-win-text-dark transition-colors hidden sm:flex"
           >
             {isMaximized ? (
               <Copy className="w-3 h-3 rotate-180" />
@@ -143,22 +142,25 @@ export const Window: React.FC<WindowProps> = ({
             )}
           </button>
 
-          {/* Close Button */}
+          {/* Close */}
           <button
             onClick={(e) => {
               e.stopPropagation();
               onClose();
             }}
             title="Close"
-            className="w-7 h-7 flex items-center justify-center rounded text-os-muted hover:text-os-rose hover:bg-os-rose/10 active:bg-os-rose/20 transition-colors"
+            aria-label="Close window"
+            className={`w-11 h-full flex items-center justify-center text-win-muted-light dark:text-win-muted-dark hover:bg-[#e81123] hover:text-white active:bg-[#c4101f] transition-colors ${
+              !isMaximized ? 'rounded-tr-lg' : ''
+            }`}
           >
             <X className="w-3.5 h-3.5" />
           </button>
         </div>
       </div>
 
-      {/* OS Window Body */}
-      <div className="flex-1 overflow-auto bg-os-bg/95 relative text-os-text">
+      {/* OS Window Content */}
+      <div className="flex-1 overflow-auto bg-[#fafafa] dark:bg-[#1a1a1a] relative text-win-text-light dark:text-win-text-dark win-scrollbar">
         {children}
       </div>
     </motion.div>

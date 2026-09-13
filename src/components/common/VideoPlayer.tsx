@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Play, Pause, Volume2, VolumeX, Maximize, RotateCcw, Film } from 'lucide-react';
 
 interface VideoPlayerProps {
@@ -21,6 +21,16 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [hasError, setHasError] = useState(false);
+
+  useEffect(() => {
+    setIsPlaying(false);
+    setProgress(0);
+    setCurrentTime(0);
+    setHasError(false);
+    if (videoRef.current) {
+      videoRef.current.load();
+    }
+  }, [src]);
 
   const togglePlay = () => {
     if (!videoRef.current || hasError || !src) return;
@@ -84,14 +94,14 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
   if (!src || hasError) {
     return (
       <div
-        className={`aspect-video w-full rounded-xl bg-os-card/80 border border-os-border flex flex-col items-center justify-center p-6 text-center space-y-3 ${className}`}
+        className={`aspect-video w-full rounded-lg bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 flex flex-col items-center justify-center p-6 text-center space-y-2 ${className}`}
       >
-        <div className="w-12 h-12 rounded-xl bg-os-surface border border-os-border flex items-center justify-center text-os-dim">
-          <Film className="w-6 h-6" />
+        <div className="w-10 h-10 rounded-lg bg-black/5 dark:bg-white/10 flex items-center justify-center text-win-muted-light dark:text-win-muted-dark">
+          <Film className="w-5 h-5" />
         </div>
-        <div className="space-y-1">
-          <p className="text-xs font-mono font-medium text-os-text">{title}</p>
-          <p className="text-[11px] font-mono text-os-muted">
+        <div className="space-y-0.5">
+          <p className="text-xs font-semibold text-win-text-light dark:text-win-text-dark">{title}</p>
+          <p className="text-[11px] text-win-muted-light dark:text-win-muted-dark">
             Project demonstration will be added.
           </p>
         </div>
@@ -99,13 +109,15 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
     );
   }
 
+  const safeSrc = src ? encodeURI(decodeURI(src)) : undefined;
+
   return (
     <div
-      className={`relative group rounded-xl overflow-hidden bg-black border border-os-border select-none ${className}`}
+      className={`relative group rounded-lg overflow-hidden bg-black border border-black/15 dark:border-white/15 select-none ${className}`}
     >
       <video
         ref={videoRef}
-        src={src}
+        src={safeSrc}
         poster={poster}
         onTimeUpdate={handleTimeUpdate}
         onLoadedMetadata={handleLoadedMetadata}
@@ -124,38 +136,38 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
           max="100"
           value={progress}
           onChange={handleSeek}
-          className="w-full h-1 bg-white/20 rounded-lg appearance-none cursor-pointer accent-os-accent"
+          className="w-full h-1 bg-white/20 rounded-lg appearance-none cursor-pointer accent-win-accent"
         />
 
         {/* Buttons and time */}
-        <div className="flex items-center justify-between text-xs font-mono text-os-text">
+        <div className="flex items-center justify-between text-xs text-white">
           <div className="flex items-center space-x-2">
             <button
               onClick={togglePlay}
-              className="p-1 rounded hover:bg-white/10 text-os-text transition-colors"
+              className="p-1 rounded hover:bg-white/10 text-white transition-colors"
             >
               {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
             </button>
             <button
               onClick={handleReplay}
-              className="p-1 rounded hover:bg-white/10 text-os-muted hover:text-os-text transition-colors"
+              className="p-1 rounded hover:bg-white/10 text-white/70 hover:text-white transition-colors"
             >
               <RotateCcw className="w-3.5 h-3.5" />
             </button>
             <button
               onClick={toggleMute}
-              className="p-1 rounded hover:bg-white/10 text-os-muted hover:text-os-text transition-colors"
+              className="p-1 rounded hover:bg-white/10 text-white/70 hover:text-white transition-colors"
             >
               {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
             </button>
-            <span className="text-[10px] text-os-dim ml-1">
+            <span className="text-[10px] text-white/60 font-mono ml-1">
               {formatTime(currentTime)} / {formatTime(duration)}
             </span>
           </div>
 
           <button
             onClick={handleFullscreen}
-            className="p-1 rounded hover:bg-white/10 text-os-muted hover:text-os-text transition-colors"
+            className="p-1 rounded hover:bg-white/10 text-white/70 hover:text-white transition-colors"
           >
             <Maximize className="w-3.5 h-3.5" />
           </button>

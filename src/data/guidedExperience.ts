@@ -398,12 +398,12 @@ export const GUIDED_CHAPTERS: GuidedChapter[] = [
     storyPhase: 'experience',
     associatedAppId: 'experience',
     narrationText:
-      'My professional work includes serving as a Senior Backend Developer at Market Now, Senior Backend Developer at Rubat AI, independent software development contracts, and early data analysis work at Codetech IT Solution.',
+      'My professional work includes serving as a Senior Backend Developer at Market Now, a Backend Developer Intern at Rubat AI, independent software development contracts, and early data analysis work at Codetech IT Solution.',
     durationSeconds: 13,
     keyPoints: [
-      'Senior Backend Developer — Market Now',
+      'Senior Backend Developer — Market Now (Feb 2026 - Sep 2026)',
       'Freelance Software Developer — Contract Systems Engineering',
-      'Senior Backend Developer — Rubat AI',
+      'Backend Developer Intern — Rubat AI (Oct 2026)',
       'Data Analyst Intern — Codetech IT Solution',
     ],
   },
