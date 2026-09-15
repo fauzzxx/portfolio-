@@ -69,7 +69,7 @@ const SEGMENT_VIDEO_CUES: Record<string, VideoCue[]> = {
 };
 
 // Automatically and reliably find the exact project for any video source
-export function getProjectForVideo(videoSrc: string): Project | undefined {
+function getProjectForVideo(videoSrc: string): Project | undefined {
   if (!videoSrc) return undefined;
   return PROJECTS_DATA.find(
     (p) =>
