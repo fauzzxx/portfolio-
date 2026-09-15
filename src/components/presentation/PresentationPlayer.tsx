@@ -15,6 +15,7 @@ import {
   Film,
   Award,
   AlertTriangle,
+  ExternalLink,
 } from 'lucide-react';
 import presentationData from '../../data/presentation.json';
 import { PROJECTS_DATA } from '../../data/projects';
@@ -32,6 +33,50 @@ interface ElevenLabsStatus {
   status: 'success' | 'error' | 'pending';
   errorMessage?: string;
   httpStatus?: number;
+}
+
+interface VideoCue {
+  videoIndex: number;
+  start: number;
+  end: number;
+}
+
+// Precise script timestamp cues matching ElevenLabs audio narration
+const SEGMENT_VIDEO_CUES: Record<string, VideoCue[]> = {
+  'segment-3-web-development-foundation': [
+    { videoIndex: 0, start: 39.0, end: 45.0 }, // Alpha Omega
+    { videoIndex: 1, start: 45.0, end: 51.0 }, // SIOUGE
+    { videoIndex: 2, start: 51.0, end: 57.0 }, // Crestline Capital
+    { videoIndex: 3, start: 57.0, end: 65.0 }, // Ammu's Pets & Kennels
+  ],
+  'segment-4-ai-computer-vision': [
+    { videoIndex: 0, start: 65.0, end: 82.9 },  // Post Office Analyser
+    { videoIndex: 1, start: 82.9, end: 99.9 },  // Football Analyser
+    { videoIndex: 2, start: 99.9, end: 109.0 }, // Classroom Analyser
+  ],
+  'segment-5-major-ai-products': [
+    { videoIndex: 0, start: 109.0, end: 130.8 }, // AL-AQL (Part 1: Architecture)
+    { videoIndex: 1, start: 130.8, end: 147.9 }, // AL-AQL (Part 2: Multimodal & Generation)
+    { videoIndex: 2, start: 147.9, end: 154.8 }, // Weaver AI (Part 1: Full-stack synthesis)
+    { videoIndex: 3, start: 154.8, end: 161.7 }, // Weaver AI (Part 2: Live preview)
+    { videoIndex: 4, start: 161.7, end: 176.3 }, // Smart Classroom Assist
+    { videoIndex: 5, start: 176.3, end: 181.1 }, // RouteX Capital
+    { videoIndex: 6, start: 181.1, end: 186.0 }, // MarketNOW
+  ],
+  'segment-6-application-development-experiments-montage': [
+    { videoIndex: 0, start: 186.0, end: 218.0 }, // Mahdaviat
+  ],
+};
+
+// Automatically and reliably find the exact project for any video source
+export function getProjectForVideo(videoSrc: string): Project | undefined {
+  if (!videoSrc) return undefined;
+  return PROJECTS_DATA.find(
+    (p) =>
+      p.videos?.includes(videoSrc) ||
+      p.videoUrls?.includes(videoSrc) ||
+      p.videoUrl === videoSrc
+  );
 }
 
 export const PresentationPlayer: React.FC<PresentationPlayerProps> = ({
@@ -54,17 +99,19 @@ export const PresentationPlayer: React.FC<PresentationPlayerProps> = ({
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const currentSegment = segments[currentSegmentIndex] || segments[0];
 
-  // Map current project corresponding to the active video
-  const currentProjectId =
-    currentSegment.projectIds?.[selectedVideoIndex] ||
-    currentSegment.projectIds?.[0];
-  const currentProject: Project | undefined = currentProjectId
-    ? PROJECTS_DATA.find((p) => p.id === currentProjectId)
-    : undefined;
-
-  // Active video reference
+  // Active videos in this segment
   const currentVideos = currentSegment.videoRefs || [];
   const activeVideoSrc = currentVideos[selectedVideoIndex] || currentVideos[0] || '';
+
+  // Automatically and accurately resolve project from active video first
+  const currentProject: Project | undefined =
+    getProjectForVideo(activeVideoSrc) ||
+    (currentSegment.projectIds?.[selectedVideoIndex]
+      ? PROJECTS_DATA.find((p) => p.id === currentSegment.projectIds[selectedVideoIndex])
+      : undefined) ||
+    (currentSegment.projectIds?.[0]
+      ? PROJECTS_DATA.find((p) => p.id === currentSegment.projectIds[0])
+      : undefined);
 
   // Cancel any browser speech synthesis — strictly prohibit browser TTS
   useEffect(() => {
@@ -109,11 +156,24 @@ export const PresentationPlayer: React.FC<PresentationPlayerProps> = ({
     setUserSelectedVideo(false);
   }, [currentSegmentIndex]);
 
-  // Auto-switch videos based on playback progression within multi-video segments
+  // Auto-switch videos based on precise narration cues and progression
   useEffect(() => {
     if (userSelectedVideo) return;
     if (currentVideos.length <= 1) return;
 
+    // First check exact narration timestamp cues for this segment
+    const cues = SEGMENT_VIDEO_CUES[currentSegment.id];
+    if (cues && cues.length > 0) {
+      const activeCue = cues.find((c) => currentTime >= c.start && currentTime < c.end);
+      if (activeCue && activeCue.videoIndex < currentVideos.length) {
+        if (activeCue.videoIndex !== selectedVideoIndex) {
+          setSelectedVideoIndex(activeCue.videoIndex);
+        }
+        return;
+      }
+    }
+
+    // Fallback proportional division if no exact cue match
     const segStart = currentSegment.startTime;
     const segEnd = currentSegment.endTime;
     const segDur = segEnd - segStart;
@@ -407,31 +467,40 @@ export const PresentationPlayer: React.FC<PresentationPlayerProps> = ({
                 className="w-full h-full object-contain"
               />
 
-              {/* Multi-video selector pills if project has multiple videos */}
+              {/* Multi-video selector pills with accurate project names */}
               {currentVideos.length > 1 && (
                 <div className="absolute top-3 left-3 z-20 flex flex-wrap items-center gap-1.5 p-1 rounded-lg bg-black/75 backdrop-blur-md border border-white/15 max-w-[90%] shadow-lg">
                   <Film className="w-3.5 h-3.5 text-[#60cdff] ml-1 mr-0.5 shrink-0" />
-                  {currentVideos.map((_, vIdx) => {
-                    const matchedProjId = currentSegment.projectIds?.[vIdx];
-                    const matchedProj = matchedProjId
-                      ? PROJECTS_DATA.find((p) => p.id === matchedProjId)
-                      : null;
-                    const label = matchedProj
-                      ? matchedProj.title
-                      : `Demo ${vIdx + 1}`;
+                  {currentVideos.map((vSrc, vIdx) => {
+                    const matchedProj = getProjectForVideo(vSrc);
+                    let label = `Demo ${vIdx + 1}`;
+                    if (matchedProj) {
+                      const projVideos = currentVideos.filter(
+                        (v) =>
+                          matchedProj.videos?.includes(v) ||
+                          matchedProj.videoUrls?.includes(v) ||
+                          matchedProj.videoUrl === v
+                      );
+                      if (projVideos.length > 1) {
+                        const partNum = projVideos.indexOf(vSrc) + 1;
+                        label = `${matchedProj.title} (Part ${partNum})`;
+                      } else {
+                        label = matchedProj.title;
+                      }
+                    }
 
                     return (
                       <button
                         key={vIdx}
                         onClick={() => handleSelectVideo(vIdx)}
-                        className={`px-2 py-0.5 rounded text-[10px] font-semibold transition-all truncate max-w-[140px] ${
+                        className={`px-2.5 py-1 rounded text-[11px] font-semibold transition-all truncate max-w-[170px] flex items-center space-x-1 ${
                           selectedVideoIndex === vIdx
                             ? 'bg-[#0078d4] text-white shadow-sm ring-1 ring-white/30'
-                            : 'text-white/60 hover:text-white hover:bg-white/10'
+                            : 'text-white/70 hover:text-white hover:bg-white/15'
                         }`}
                         title={label}
                       >
-                        {label}
+                        <span>{label}</span>
                       </button>
                     );
                   })}
@@ -523,6 +592,71 @@ export const PresentationPlayer: React.FC<PresentationPlayerProps> = ({
                       +{currentProject.techStack.length - 8} more
                     </span>
                   )}
+                </div>
+              </div>
+            )}
+
+            {/* Featured Projects In This Stage */}
+            {currentSegment.projectIds && currentSegment.projectIds.length > 0 && (
+              <div className="space-y-1.5 pt-2 border-t border-white/10">
+                <div className="text-[10px] uppercase font-semibold text-white/50 tracking-wider flex items-center justify-between">
+                  <span>Projects In This Stage ({currentSegment.projectIds.length})</span>
+                </div>
+                <div className="space-y-1">
+                  {currentSegment.projectIds.map((pid) => {
+                    const p = PROJECTS_DATA.find((item) => item.id === pid);
+                    if (!p) return null;
+                    const isCurrent = currentProject?.id === p.id;
+                    const hasLive = Boolean(p.liveUrl || p.liveDemoUrl);
+                    const hasVideo = Boolean(p.videos && p.videos.length > 0);
+
+                    return (
+                      <div
+                        key={pid}
+                        className={`flex items-center justify-between p-1.5 rounded transition-all border ${
+                          isCurrent
+                            ? 'bg-[#0078d4]/20 border-[#0078d4]/40 text-white'
+                            : 'bg-white/5 border-white/5 text-white/80 hover:bg-white/10'
+                        }`}
+                      >
+                        <div
+                          className="flex items-center space-x-2 min-w-0 cursor-pointer"
+                          onClick={() => onOpenProject?.(p.id)}
+                          title={`Click to open ${p.title} in FAUZAAN OS`}
+                        >
+                          <span
+                            className={`w-1.5 h-1.5 rounded-full ${
+                              isCurrent ? 'bg-emerald-400 animate-pulse' : 'bg-white/30'
+                            }`}
+                          />
+                          <span className="text-[11px] font-medium truncate">{p.title}</span>
+                          <span className="text-[9px] px-1 rounded bg-white/10 text-white/50 shrink-0">
+                            {p.categoryLabel}
+                          </span>
+                        </div>
+
+                        <div className="flex items-center space-x-1 shrink-0">
+                          {hasVideo && (
+                            <span className="text-[9px] text-[#60cdff] px-1 py-0.5 rounded bg-[#0078d4]/15 font-mono">
+                              Video
+                            </span>
+                          )}
+                          {hasLive && (
+                            <a
+                              href={p.liveUrl || p.liveDemoUrl}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="text-[9px] text-emerald-400 hover:text-emerald-300 px-1 py-0.5 rounded bg-emerald-500/10 flex items-center space-x-0.5"
+                              title="Launch Live Application"
+                            >
+                              <span>Live</span>
+                              <ExternalLink className="w-2.5 h-2.5 ml-0.5" />
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             )}
