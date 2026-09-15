@@ -19,6 +19,7 @@ import {
   Mail,
   Clock,
   Trash2,
+  Play,
 } from 'lucide-react';
 import { getRecentActivities, clearRecentActivities, logActivity } from '../../utils/recentActivity';
 
@@ -30,6 +31,7 @@ interface StartMenuProps {
   onStartGuidedExperience: () => void;
   onRestartBoot: () => void;
   onOpenExperienceSelector?: () => void;
+  onStartPresentation?: () => void;
 }
 
 export const StartMenu: React.FC<StartMenuProps> = ({
@@ -40,6 +42,7 @@ export const StartMenu: React.FC<StartMenuProps> = ({
   onStartGuidedExperience,
   onRestartBoot,
   onOpenExperienceSelector,
+  onStartPresentation,
 }) => {
   const menuRef = useRef<HTMLDivElement>(null);
   const [experienceMode, setExperienceMode] = useState<ExperienceMode>('explore');
@@ -433,6 +436,35 @@ export const StartMenu: React.FC<StartMenuProps> = ({
 
       {/* Main Body: Pinned & Recommended & Recent */}
       <div className="flex-1 overflow-y-auto px-6 py-2 space-y-5 win-scrollbar">
+        {/* START PRESENTATION FEATURED HERO CARD */}
+        <div
+          onClick={() => {
+            onClose();
+            if (onStartPresentation) onStartPresentation();
+          }}
+          className="p-3 rounded-xl bg-gradient-to-r from-[#0078d4]/30 via-[#1084d9]/20 to-black/30 border border-[#0078d4]/50 hover:border-[#60cdff] cursor-pointer transition-all flex items-center justify-between group shadow-sm hover:shadow-md"
+        >
+          <div className="flex items-center space-x-3">
+            <div className="w-9 h-9 rounded-lg bg-[#0078d4] flex items-center justify-center text-white shadow group-hover:scale-105 transition-transform shrink-0">
+              <Play className="w-4 h-4 fill-white ml-0.5" />
+            </div>
+            <div className="min-w-0">
+              <div className="flex items-center space-x-2">
+                <span className="text-xs font-bold text-white tracking-wide">
+                  START PRESENTATION
+                </span>
+                <span className="px-1.5 py-0.5 rounded bg-[#0078d4]/40 text-[9px] text-[#60cdff] font-mono font-semibold">
+                  4–5 MIN
+                </span>
+              </div>
+              <span className="text-[11px] text-white/70 block truncate">
+                Automated multimodal tour of Fauzaan's AI, Vision & Systems
+              </span>
+            </div>
+          </div>
+          <ChevronRight className="w-4 h-4 text-white/50 group-hover:text-white transition-colors shrink-0 ml-2" />
+        </div>
+
         {/* Pinned Applications Section */}
         <div className="space-y-3">
           <div className="flex items-center justify-between">

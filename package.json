@@ -7,7 +7,12 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "generate:presentation": "node scripts/presentation/run-all.js",
+    "presentation:analyze": "node scripts/presentation/analyze-videos.js",
+    "presentation:script": "node scripts/presentation/generate-script.js",
+    "presentation:validate": "node scripts/presentation/validate-script.js",
+    "presentation:voice": "node scripts/presentation/generate-voice.js"
   },
   "dependencies": {
     "clsx": "^2.1.1",

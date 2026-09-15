@@ -14,6 +14,7 @@ interface DesktopProps {
   onOpenSearch: () => void;
   onOpenFocusMode?: () => void;
   onOpenExperienceSelector?: () => void;
+  onStartPresentation?: () => void;
 }
 
 export const Desktop: React.FC<DesktopProps> = ({
@@ -22,6 +23,7 @@ export const Desktop: React.FC<DesktopProps> = ({
   onStartGuidedExperience,
   onOpenFocusMode,
   onOpenExperienceSelector,
+  onStartPresentation,
 }) => {
   const [contextMenu, setContextMenu] = useState<{ x: number; y: number } | null>(null);
 
@@ -65,6 +67,7 @@ export const Desktop: React.FC<DesktopProps> = ({
             onStartGuidedExperience={onStartGuidedExperience}
             onOpenApp={onOpenApp}
             onOpenFocusMode={onOpenFocusMode}
+            onStartPresentation={onStartPresentation}
           />
 
           <DesktopCommandBar onOpenApp={onOpenApp} />

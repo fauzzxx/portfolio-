@@ -11,12 +11,14 @@ import {
   ChevronRight,
   Activity,
   CheckCircle2,
+  Play,
 } from 'lucide-react';
 
 interface DesktopWidgetProps {
   onStartGuidedExperience: () => void;
   onOpenApp: (appId: AppId) => void;
   onOpenFocusMode?: () => void;
+  onStartPresentation?: () => void;
 }
 
 type WidgetTab = 'build' | 'think' | 'proof' | 'now';
@@ -25,6 +27,7 @@ export const DesktopWidget: React.FC<DesktopWidgetProps> = ({
   onStartGuidedExperience,
   onOpenApp,
   onOpenFocusMode,
+  onStartPresentation,
 }) => {
   const [activeTab, setActiveTab] = useState<WidgetTab>('build');
 
@@ -50,6 +53,24 @@ export const DesktopWidget: React.FC<DesktopWidgetProps> = ({
           </div>
         </div>
       </div>
+
+      {/* START PRESENTATION PRIMARY BUTTON */}
+      {onStartPresentation && (
+        <button
+          onClick={onStartPresentation}
+          className="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-gradient-to-r from-[#0078d4] to-[#1084d9] hover:from-[#1084d9] hover:to-[#0078d4] text-white text-xs font-bold transition-all shadow-md group border border-white/20 active:scale-[0.99]"
+        >
+          <div className="flex items-center space-x-2">
+            <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center">
+              <Play className="w-3 h-3 fill-white ml-0.5" />
+            </div>
+            <span className="tracking-wide">START PRESENTATION</span>
+          </div>
+          <span className="text-[10px] px-1.5 py-0.5 rounded bg-black/30 text-white/90 font-mono">
+            4–5 MIN
+          </span>
+        </button>
+      )}
 
       {/* 4 Interactive Segment Controls */}
       <div className="grid grid-cols-4 p-1 rounded-lg bg-black/40 border border-white/5 gap-1">

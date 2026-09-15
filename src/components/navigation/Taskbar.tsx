@@ -17,6 +17,7 @@ interface TaskbarProps {
   onStartGuidedExperience: () => void;
   onRestartBoot?: () => void;
   onOpenExperienceSelector?: () => void;
+  onStartPresentation?: () => void;
 }
 
 export const Taskbar: React.FC<TaskbarProps> = ({
@@ -29,6 +30,7 @@ export const Taskbar: React.FC<TaskbarProps> = ({
   onStartGuidedExperience,
   onRestartBoot = () => window.location.reload(),
   onOpenExperienceSelector,
+  onStartPresentation,
 }) => {
   const [isStartMenuOpen, setIsStartMenuOpen] = useState(false);
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
@@ -74,6 +76,7 @@ export const Taskbar: React.FC<TaskbarProps> = ({
         onStartGuidedExperience={onStartGuidedExperience}
         onRestartBoot={onRestartBoot}
         onOpenExperienceSelector={onOpenExperienceSelector}
+        onStartPresentation={onStartPresentation}
       />
 
       {/* Windows Calendar Flyout */}

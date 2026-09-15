@@ -8,7 +8,9 @@ import { UniversalSearchModal } from '../navigation/UniversalSearchModal';
 import { ProjectDetailModal } from '../projects/ProjectDetailModal';
 import { ExperienceSelectorModal } from '../desktop/ExperienceSelectorModal';
 import { FocusModeModal } from '../guided/FocusModeModal';
+import { PresentationPlayer } from '../presentation/PresentationPlayer';
 import { logActivity } from '../../utils/recentActivity';
+import { PROJECTS_DATA } from '../../data/projects';
 import type { AppId, ExperienceMode } from '../../types/os';
 import type { Project } from '../../types/project';
 
@@ -23,6 +25,7 @@ export const OSShell: React.FC = () => {
     focusWindow,
   } = useWindowManager();
 
+  const [isPresentationOpen, setIsPresentationOpen] = useState(false);
   const [isGuidedOpen, setIsGuidedOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isExperienceSelectorOpen, setIsExperienceSelectorOpen] = useState(false);
@@ -63,7 +66,9 @@ export const OSShell: React.FC = () => {
       }
       // Escape to close modals
       else if (e.key === 'Escape') {
-        if (searchProjectDetail) {
+        if (isPresentationOpen) {
+          setIsPresentationOpen(false);
+        } else if (searchProjectDetail) {
           setSearchProjectDetail(null);
         } else if (isExperienceSelectorOpen) {
           setIsExperienceSelectorOpen(false);
@@ -79,7 +84,7 @@ export const OSShell: React.FC = () => {
 
     window.addEventListener('keydown', handleGlobalKeyDown);
     return () => window.removeEventListener('keydown', handleGlobalKeyDown);
-  }, [searchProjectDetail, isSearchOpen, isGuidedOpen, isExperienceSelectorOpen, isFocusModeOpen]);
+  }, [isPresentationOpen, searchProjectDetail, isSearchOpen, isGuidedOpen, isExperienceSelectorOpen, isFocusModeOpen]);
 
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-os-bg text-os-text flex flex-col select-none">
@@ -88,6 +93,7 @@ export const OSShell: React.FC = () => {
         windows={windows}
         onOpenApp={handleOpenApp}
         onStartGuidedExperience={() => setIsGuidedOpen(true)}
+        onStartPresentation={() => setIsPresentationOpen(true)}
         onOpenSearch={() => setIsSearchOpen(true)}
         onOpenFocusMode={() => setIsFocusModeOpen(true)}
         onOpenExperienceSelector={() => setIsExperienceSelectorOpen(true)}
@@ -113,6 +119,7 @@ export const OSShell: React.FC = () => {
         onMinimizeWindow={minimizeWindow}
         onOpenSearch={() => setIsSearchOpen(true)}
         onStartGuidedExperience={() => setIsGuidedOpen(true)}
+        onStartPresentation={() => setIsPresentationOpen(true)}
         onOpenExperienceSelector={() => setIsExperienceSelectorOpen(true)}
       />
 
@@ -159,6 +166,18 @@ export const OSShell: React.FC = () => {
         <GuidedExperienceOverlay
           onExit={() => setIsGuidedOpen(false)}
           onOpenApp={handleOpenApp}
+        />
+      )}
+
+      {/* FAUZAAN OS Automated Project Presentation (4-5 min) */}
+      {isPresentationOpen && (
+        <PresentationPlayer
+          onClose={() => setIsPresentationOpen(false)}
+          onOpenProject={(projId) => {
+            setIsPresentationOpen(false);
+            const found = PROJECTS_DATA.find((p) => p.id === projId);
+            if (found) setSearchProjectDetail(found);
+          }}
         />
       )}
     </div>
