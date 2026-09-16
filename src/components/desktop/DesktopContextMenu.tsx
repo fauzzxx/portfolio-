@@ -7,6 +7,7 @@ import {
   Clock,
   Compass,
   Image,
+  Play,
 } from 'lucide-react';
 import type { AppId, WallpaperConfig } from '../../types/os';
 import { WALLPAPER_COLLECTION } from '../../data/wallpapers';
@@ -20,6 +21,7 @@ interface DesktopContextMenuProps {
   onRefresh: () => void;
   onOpenFocusMode?: () => void;
   onOpenExperienceSelector?: () => void;
+  onStartPresentation?: () => void;
 }
 
 export const DesktopContextMenu: React.FC<DesktopContextMenuProps> = ({
@@ -31,6 +33,7 @@ export const DesktopContextMenu: React.FC<DesktopContextMenuProps> = ({
   onRefresh,
   onOpenFocusMode,
   onOpenExperienceSelector,
+  onStartPresentation,
 }) => {
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -78,6 +81,19 @@ export const DesktopContextMenu: React.FC<DesktopContextMenuProps> = ({
         <RotateCcw className="w-4 h-4 text-white/70" />
         <span>Refresh</span>
       </button>
+
+      {onStartPresentation && (
+        <button
+          onClick={() => {
+            onStartPresentation();
+            onClose();
+          }}
+          className="w-full flex items-center space-x-2.5 px-3 py-1.5 rounded-lg bg-[#0078d4]/15 hover:bg-[#0078d4]/25 text-[#60cdff] text-left transition-colors font-semibold"
+        >
+          <Play className="w-4 h-4 fill-[#60cdff]" />
+          <span>Start Presentation (4-5 min)</span>
+        </button>
+      )}
 
       {onOpenFocusMode && (
         <button

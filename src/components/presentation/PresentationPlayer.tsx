@@ -240,7 +240,13 @@ export const PresentationPlayer: React.FC<PresentationPlayerProps> = ({
   useEffect(() => {
     if (!audioRef.current || voiceStatus?.status !== 'success') return;
     if (isPlaying) {
-      audioRef.current.play().catch(() => {});
+      const playPromise = audioRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Autoplay was prevented by browser policy (common on mobile without direct touch)
+          setIsPlaying(false);
+        });
+      }
     } else {
       audioRef.current.pause();
     }
@@ -328,6 +334,7 @@ export const PresentationPlayer: React.FC<PresentationPlayerProps> = ({
           src="/media/audio/fauzaan-presentation.mp3"
           preload="auto"
           autoPlay
+          playsInline
           onTimeUpdate={handleTimeUpdate}
           onEnded={() => setIsPlaying(false)}
         />
@@ -444,9 +451,9 @@ export const PresentationPlayer: React.FC<PresentationPlayerProps> = ({
       )}
 
       {/* 2. Main Presentation Stage */}
-      <main className="relative z-10 flex-1 overflow-hidden p-4 sm:p-6 flex flex-col lg:flex-row gap-4 items-stretch">
+      <main className="relative z-10 flex-1 overflow-y-auto lg:overflow-hidden p-3 sm:p-6 flex flex-col lg:flex-row gap-4 items-stretch win-scrollbar">
         {/* Left: Video / Media Screen */}
-        <div className="flex-1 flex flex-col justify-center items-center rounded-2xl bg-black/60 border border-white/10 overflow-hidden relative shadow-2xl min-h-[300px]">
+        <div className="flex-1 flex flex-col justify-center items-center rounded-2xl bg-black/60 border border-white/10 overflow-hidden relative shadow-2xl min-h-[220px] sm:min-h-[280px] lg:min-h-[340px] aspect-video lg:aspect-auto">
           {activeVideoSrc ? (
             <div className="w-full h-full relative flex items-center justify-center bg-black">
               <video
@@ -467,9 +474,9 @@ export const PresentationPlayer: React.FC<PresentationPlayerProps> = ({
                 className="w-full h-full object-contain"
               />
 
-              {/* Multi-video selector pills with accurate project names */}
+              {/* Multi-video selector pills with accurate project names (horizontally scrollable on mobile) */}
               {currentVideos.length > 1 && (
-                <div className="absolute top-3 left-3 z-20 flex flex-wrap items-center gap-1.5 p-1 rounded-lg bg-black/75 backdrop-blur-md border border-white/15 max-w-[90%] shadow-lg">
+                <div className="absolute top-2 left-2 sm:top-3 sm:left-3 z-20 flex items-center gap-1.5 p-1 rounded-lg bg-black/85 backdrop-blur-md border border-white/15 max-w-[calc(100%-16px)] overflow-x-auto win-scrollbar shadow-lg">
                   <Film className="w-3.5 h-3.5 text-[#60cdff] ml-1 mr-0.5 shrink-0" />
                   {currentVideos.map((vSrc, vIdx) => {
                     const matchedProj = getProjectForVideo(vSrc);
@@ -493,7 +500,7 @@ export const PresentationPlayer: React.FC<PresentationPlayerProps> = ({
                       <button
                         key={vIdx}
                         onClick={() => handleSelectVideo(vIdx)}
-                        className={`px-2.5 py-1 rounded text-[11px] font-semibold transition-all truncate max-w-[170px] flex items-center space-x-1 ${
+                        className={`px-2.5 py-1 rounded text-[11px] font-semibold transition-all whitespace-nowrap shrink-0 flex items-center space-x-1 ${
                           selectedVideoIndex === vIdx
                             ? 'bg-[#0078d4] text-white shadow-sm ring-1 ring-white/30'
                             : 'text-white/70 hover:text-white hover:bg-white/15'
@@ -511,16 +518,16 @@ export const PresentationPlayer: React.FC<PresentationPlayerProps> = ({
               {currentProject && (
                 <div
                   onClick={() => onOpenProject?.(currentProject.id)}
-                  className={`absolute bottom-3 left-3 z-20 flex items-center space-x-2 px-3 py-1.5 rounded-lg bg-black/75 backdrop-blur-md border border-white/15 ${
+                  className={`absolute bottom-2 left-2 sm:bottom-3 sm:left-3 z-20 flex items-center space-x-2 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg bg-black/85 backdrop-blur-md border border-white/15 max-w-[90%] truncate ${
                     onOpenProject ? 'hover:border-[#60cdff] cursor-pointer' : ''
                   } transition-colors`}
                   title={onOpenProject ? `View details for ${currentProject.title}` : undefined}
                 >
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span className="text-xs font-bold text-white tracking-wide">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+                  <span className="text-xs font-bold text-white tracking-wide truncate">
                     {currentProject.title}
                   </span>
-                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-white/10 text-white/70 font-medium">
+                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-white/10 text-white/70 font-medium shrink-0">
                     {currentProject.categoryLabel}
                   </span>
                 </div>

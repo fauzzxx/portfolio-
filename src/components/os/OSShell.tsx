@@ -33,8 +33,23 @@ export const OSShell: React.FC = () => {
   const [currentExperienceMode, setCurrentExperienceMode] = useState<ExperienceMode>('explore');
   const [searchProjectDetail, setSearchProjectDetail] = useState<Project | null>(null);
 
-  // Check first visit to optionally show Experience Selector
+  // Check URL query parameters or hash to auto-launch presentation (e.g. ?presentation=true or #presentation)
   useEffect(() => {
+    try {
+      const searchParams = new URLSearchParams(window.location.search);
+      const hasPresentationQuery =
+        searchParams.get('presentation') === 'true' ||
+        searchParams.get('presentation') === '1' ||
+        searchParams.has('presentation');
+      const hasPresentationHash = window.location.hash.toLowerCase().includes('presentation');
+      const hasPresentationPath = window.location.pathname.toLowerCase().includes('presentation');
+
+      if (hasPresentationQuery || hasPresentationHash || hasPresentationPath) {
+        setIsPresentationOpen(true);
+        return;
+      }
+    } catch {}
+
     try {
       const shown = localStorage.getItem('fauzaan_os_experience_selector_shown');
       if (!shown) {
@@ -45,6 +60,32 @@ export const OSShell: React.FC = () => {
       if (savedMode) setCurrentExperienceMode(savedMode);
     } catch {}
   }, []);
+
+  // Listen to hash changes for deep linking (e.g. #presentation)
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash.toLowerCase().includes('presentation')) {
+        setIsPresentationOpen(true);
+      }
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  // Sync URL hash when presentation is toggled
+  useEffect(() => {
+    try {
+      if (isPresentationOpen) {
+        if (window.location.hash !== '#presentation') {
+          window.history.replaceState(null, '', '#presentation');
+        }
+      } else {
+        if (window.location.hash === '#presentation') {
+          window.history.replaceState(null, '', window.location.pathname + window.location.search);
+        }
+      }
+    } catch {}
+  }, [isPresentationOpen]);
 
   const handleOpenApp = (appId: AppId) => {
     logActivity('open_app', `Launched ${appId.toUpperCase()}`, { appId });

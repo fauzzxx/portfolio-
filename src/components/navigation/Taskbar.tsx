@@ -5,7 +5,7 @@ import { StartMenu } from './StartMenu';
 import { CalendarFlyout } from './CalendarFlyout';
 import { QuickSettingsFlyout } from './QuickSettingsFlyout';
 import { useSystemClock } from '../../hooks/useSystemClock';
-import { Search, Wifi, Volume2, Battery } from 'lucide-react';
+import { Search, Wifi, Volume2, Battery, Play } from 'lucide-react';
 
 interface TaskbarProps {
   windows: Record<string, WindowState>;
@@ -132,6 +132,18 @@ export const Taskbar: React.FC<TaskbarProps> = ({
           >
             <Search className="w-4 h-4" />
           </button>
+
+          {/* Start Presentation Launcher Button */}
+          {onStartPresentation && (
+            <button
+              onClick={onStartPresentation}
+              title="Start Presentation (4-5 min)"
+              className="px-2 sm:px-2.5 py-1.5 rounded-lg bg-[#0078d4]/20 hover:bg-[#0078d4]/35 active:bg-[#0078d4]/50 text-[#60cdff] hover:text-white border border-[#0078d4]/35 transition-all flex items-center space-x-1 text-xs font-semibold shadow-sm group"
+            >
+              <Play className="w-3.5 h-3.5 fill-[#60cdff] text-[#60cdff] group-hover:scale-110 transition-transform" />
+              <span className="hidden sm:inline">Presentation</span>
+            </button>
+          )}
 
           {/* Running Applications Icons */}
           {openWindowsList.map((win) => {
