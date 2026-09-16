@@ -25,7 +25,7 @@ loadEnv();
 
 const VOICE_ID = process.env.ELEVENLABS_VOICE_ID?.trim() || 'bIHbv24MWmeRgasZH58o';
 const VOICE_NAME = 'Will – Relaxed Optimist';
-const ELEVENLABS_MODEL = process.env.ELEVENLABS_MODEL || 'eleven_multilingual_v2';
+const ELEVENLABS_MODEL = process.env.ELEVENLABS_MODEL || 'eleven_turbo_v2_5';
 
 export async function generatePresentationVoice() {
   console.log('Provider: ElevenLabs');
@@ -83,8 +83,10 @@ export async function generatePresentationVoice() {
         text: fullText,
         model_id: ELEVENLABS_MODEL,
         voice_settings: {
-          stability: 0.5,
-          similarity_boost: 0.75,
+          stability: 0.45,
+          similarity_boost: 0.85,
+          style: 0.25,
+          use_speaker_boost: true,
         },
       }),
     });

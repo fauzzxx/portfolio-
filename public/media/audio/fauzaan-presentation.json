@@ -1,11 +1,11 @@
 {
   "provider": "ElevenLabs",
-  "voiceName": "Will \u2013 Relaxed Optimist",
+  "voiceName": "Will – Relaxed Optimist",
   "voiceId": "bIHbv24MWmeRgasZH58o",
   "status": "success",
   "audioFile": "/media/audio/fauzaan-presentation.mp3",
-  "fileSizeBytes": 4275766,
-  "timestamp": "2026-09-15T21:57:46.044Z",
+  "fileSizeBytes": 4367299,
+  "timestamp": "2026-09-16T10:31:45.064Z",
   "totalDuration": 268,
   "segments": [
     {
@@ -153,12 +153,13 @@
       "projectIds": [
         "post-office-analyzer",
         "football-analyser",
-        "cafe-analyzer",
-        "classroom-analyser"
+        "classroom-analyser",
+        "cafe-analyzer"
       ],
       "videoRefs": [
         "/media/video/postoffice_analyser.mp4",
-        "/media/video/football_analyser.mp4"
+        "/media/video/football_analyser.mp4",
+        "/media/video/classroom_analyser.mp4"
       ],
       "keyTakeaways": [
         "Transition to AI and Computer Vision",
@@ -265,13 +266,13 @@
       ],
       "projectIds": [
         "mahdaviat",
+        "patrolpro",
         "offline-ai-chatbot",
-        "classroom-analyser"
+        "ai-drawing-challenge",
+        "blender-automation-mcp"
       ],
       "videoRefs": [
-        "/media/video/mahdaviat.mp4",
-        "/media/video/rag_document_analyzer.mp4",
-        "/media/video/classroom_analyser.mp4"
+        "/media/video/mahdaviat.mp4"
       ],
       "keyTakeaways": [
         "Diverse application development (Mahdaviat, Offline AI Chatbot, PatrolPro)",
@@ -308,7 +309,7 @@
       "projectIds": [],
       "videoRefs": [],
       "keyTakeaways": [
-        "Smart India Hackathon 2024 Winner (\u20b91,00,000 prize)",
+        "Smart India Hackathon 2024 Winner (₹1,00,000 prize)",
         "Senior Backend Developer experience at Market Now",
         "Strong academic foundation (B.Tech, Osmania University)"
       ],
