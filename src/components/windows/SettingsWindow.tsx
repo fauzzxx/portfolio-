@@ -660,7 +660,7 @@ export const SettingsWindow: React.FC<SettingsWindowProps> = ({
               </div>
               <div className="grid grid-cols-3 p-3 border-b border-black/5 dark:border-white/5">
                 <span className="text-win-muted-light dark:text-win-muted-dark">Developer:</span>
-                <span className="col-span-2 font-medium">SK Fauzaan</span>
+                <span className="col-span-2 font-medium">Syed Kareem Fauzaan</span>
               </div>
               <div className="grid grid-cols-3 p-3 border-b border-black/5 dark:border-white/5">
                 <span className="text-win-muted-light dark:text-win-muted-dark">Architecture:</span>

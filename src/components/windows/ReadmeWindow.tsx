@@ -17,7 +17,7 @@ export const ReadmeWindow: React.FC = () => {
             # FAUZAAN OS — Personal Operating System
           </div>
           <div className="text-win-muted-light dark:text-win-muted-dark">
-            Personal workstation for exploring the engineering, experiments, architecture, and journey of SK Fauzaan.
+            Personal workstation for exploring the engineering, experiments, architecture, and journey of Syed Kareem Fauzaan.
           </div>
         </div>
 

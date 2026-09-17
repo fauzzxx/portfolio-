@@ -74,7 +74,7 @@ export const ResumeWindow: React.FC = () => {
           <div className="border-b border-black/10 dark:border-white/10 pb-5 flex flex-col sm:flex-row sm:items-start justify-between gap-3">
             <div>
               <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-win-text-light dark:text-win-text-dark">
-                SK FAUZAAN
+                SYED KAREEM FAUZAAN
               </h1>
               <p className="text-sm font-medium text-win-accent mt-0.5">
                 AI Systems Engineer & Full-Stack Developer

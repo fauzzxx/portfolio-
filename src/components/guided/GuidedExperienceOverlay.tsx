@@ -157,7 +157,7 @@ export const GuidedExperienceOverlay: React.FC<GuidedExperienceOverlayProps> = (
                   I hope you enjoyed seeing how I think, build, experiment, and learn.
                   Whether building real-time vision pipelines or autonomous platforms, my aim is to make technology intelligent, reliable, and practical.
                 </p>
-                <p className="text-sm font-semibold text-white pt-2">— SK Fauzaan</p>
+                <p className="text-sm font-semibold text-white pt-2">— Syed Kareem Fauzaan</p>
               </div>
 
               <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-center gap-3">

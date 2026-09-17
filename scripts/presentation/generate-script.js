@@ -59,7 +59,7 @@ export async function generatePresentationScript() {
   }
 
   // Build the strict prompt
-  const systemInstruction = `You are writing a portfolio presentation for Fauzaan (SK Fauzaan), a Computer Science Engineer specializing in AI, Computer Vision, Machine Learning, and Software Engineering.
+  const systemInstruction = `You are writing a portfolio presentation for Fauzaan (Syed Kareem Fauzaan), a Computer Science Engineer specializing in AI, Computer Vision, Machine Learning, and Software Engineering.
 
 CRITICAL IDENTITY & PRIVACY RULES:
 - The narrator is Fauzaan. Speak in first-person ("I built...", "I engineered...", "In this project, I...").

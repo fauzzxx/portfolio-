@@ -11,7 +11,7 @@ export const AboutWindow: React.FC = () => {
         </div>
         <div>
           <h1 className="text-base font-semibold text-win-text-light dark:text-win-text-dark">
-            About SK Fauzaan
+            About Syed Kareem Fauzaan
           </h1>
           <p className="text-xs text-win-muted-light dark:text-win-muted-dark">
             AI Systems Engineer & Full-Stack Developer • Hyderabad, India
