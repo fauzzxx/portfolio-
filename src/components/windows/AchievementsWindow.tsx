@@ -31,31 +31,41 @@ export const AchievementsWindow: React.FC = () => {
 
       {/* Prominent Smart India Hackathon 2024 Card */}
       {winnerSIH && (
-        <div className="rounded-lg border-2 border-amber-500/30 bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-transparent p-5 sm:p-6 space-y-4 shadow-sm">
+        <div className="rounded-xl border-2 border-amber-500/30 bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-transparent p-5 sm:p-6 space-y-4 shadow-sm overflow-hidden">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-5">
-            <div className="space-y-2">
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-700 dark:text-amber-300 text-xs font-medium">
-                <Star className="w-3 h-3 fill-amber-500" />
-                <span>{winnerSIH.badge || 'National Champion'}</span>
+            <div className="space-y-2.5 flex-1 min-w-0">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-700 dark:text-amber-300 text-xs font-semibold border border-amber-500/30">
+                <Star className="w-3.5 h-3.5 fill-amber-500 text-amber-500" />
+                <span>{winnerSIH.badge || 'National Premier Hackathon'}</span>
               </div>
 
-              <h2 className="text-xl sm:text-2xl font-bold text-win-text-light dark:text-win-text-dark">
+              <h2 className="text-xl sm:text-2xl font-bold text-win-text-light dark:text-win-text-dark tracking-tight">
                 {winnerSIH.title} — {winnerSIH.event}
               </h2>
 
-              <p className="text-xs sm:text-sm text-win-muted-light dark:text-win-muted-dark max-w-xl leading-relaxed">
+              <p className="text-xs sm:text-sm text-win-muted-light dark:text-win-muted-dark leading-relaxed max-w-xl">
                 {winnerSIH.description} Demonstrated high-velocity engineering, robust architectural design, and production problem solving on a national stage.
               </p>
             </div>
 
-            <div className="p-4 rounded-lg bg-white dark:bg-[#252525] border border-amber-500/30 text-right self-start md:self-auto shrink-0 space-y-1 shadow-sm">
-              <span className="text-[11px] text-win-muted-light dark:text-win-muted-dark uppercase tracking-wider block font-medium">
-                Cash Prize Awarded
-              </span>
-              <span className="text-2xl sm:text-3xl font-bold text-amber-600 dark:text-amber-400 block tracking-tight">
-                {winnerSIH.prize}
-              </span>
-              <span className="text-[10px] text-win-muted-light dark:text-win-muted-dark block">
+            <div className="p-4 rounded-xl bg-white/90 dark:bg-[#202020]/95 border border-amber-500/35 text-left md:text-right shrink-0 w-full md:w-auto md:max-w-[280px] space-y-1.5 shadow-md">
+              <div className="flex items-center justify-between md:justify-end gap-2 border-b border-black/5 dark:border-white/10 pb-1">
+                <span className="text-[10px] text-win-muted-light dark:text-win-muted-dark uppercase tracking-wider font-bold">
+                  Cash Prize Awarded
+                </span>
+                <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-700 dark:text-amber-300">
+                  WINNER
+                </span>
+              </div>
+              <div className="text-base sm:text-lg font-bold text-amber-600 dark:text-amber-400 tracking-tight leading-snug break-words">
+                One Hundred Thousand Indian Rupees
+              </div>
+              <div className="text-xs font-semibold text-win-muted-light dark:text-win-muted-dark flex items-center md:justify-end gap-1.5">
+                <span className="text-amber-600 dark:text-amber-400 font-bold">₹100,000</span>
+                <span>•</span>
+                <span>National Prize</span>
+              </div>
+              <span className="text-[10px] text-win-muted-light dark:text-win-muted-dark block pt-1 border-t border-black/5 dark:border-white/10">
                 Ministry of Education & AICTE
               </span>
             </div>

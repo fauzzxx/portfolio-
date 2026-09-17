@@ -134,7 +134,7 @@ export const ResumeWindow: React.FC = () => {
             </h2>
             <div className="space-y-2 text-xs">
               <div className="p-3 rounded border border-amber-500/20 bg-amber-500/5 space-y-1">
-                <div className="flex items-center justify-between">
+                <div className="flex flex-wrap items-center justify-between gap-1.5">
                   <span className="font-semibold text-amber-700 dark:text-amber-300">
                     Smart India Hackathon 2024 — WINNER
                   </span>
