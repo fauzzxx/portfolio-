@@ -552,7 +552,7 @@ export const PresentationPlayer: React.FC<PresentationPlayerProps> = ({
               <div className="flex flex-wrap justify-center gap-2 pt-2">
                 <span className="px-2.5 py-1 rounded-full bg-white/10 border border-white/10 text-[11px] text-white/90 font-medium flex items-center space-x-1.5">
                   <Award className="w-3.5 h-3.5 text-amber-400" />
-                  <span>SIH 2024 Winner (₹1,00,000)</span>
+                  <span>SIH 2024 Winner (One Hundred Thousand Indian Rupees)</span>
                 </span>
                 <span className="px-2.5 py-1 rounded-full bg-white/10 border border-white/10 text-[11px] text-white/90 font-medium">
                   Osmania University (GPA 8.32)

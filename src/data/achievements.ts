@@ -5,7 +5,7 @@ export const ACHIEVEMENTS_DATA: AchievementItem[] = [
     id: 'sih-2024',
     title: 'WINNER',
     event: 'Smart India Hackathon 2024',
-    prize: '₹1,00,000 Cash Prize',
+    prize: 'One Hundred Thousand Indian Rupees (₹100,000) Cash Prize',
     year: '2024',
     badge: 'National Premier Hackathon',
     featured: true,

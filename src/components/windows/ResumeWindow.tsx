@@ -139,7 +139,7 @@ export const ResumeWindow: React.FC = () => {
                     Smart India Hackathon 2024 — WINNER
                   </span>
                   <span className="font-bold text-amber-700 dark:text-amber-300 text-xs">
-                    ₹1,00,000 Cash Prize
+                    One Hundred Thousand Indian Rupees (₹100,000) Cash Prize
                   </span>
                 </div>
                 <p className="text-win-muted-light dark:text-win-muted-dark text-[11.5px] leading-relaxed">

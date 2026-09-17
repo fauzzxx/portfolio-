@@ -378,14 +378,14 @@ export const GUIDED_CHAPTERS: GuidedChapter[] = [
     id: 'ch-23',
     chapterNumber: 23,
     title: 'Phase V: National Achievements',
-    subtitle: 'Smart India Hackathon 2024 Winner (₹1,00,000)',
+    subtitle: 'Smart India Hackathon 2024 Winner (One Hundred Thousand Indian Rupees / ₹100,000)',
     storyPhase: 'experience',
     associatedAppId: 'achievements',
     narrationText:
-      'My passion for building real solutions culminated in winning the Smart India Hackathon 2024 with a ₹1,00,000 national cash prize, organized by the Ministry of Education & AICTE. Additional honors include Best Innovative Idea at HackEnvision 2.0 and multiple project expo placements.',
+      'My passion for building real solutions culminated in winning the Smart India Hackathon 2024 with a One Hundred Thousand Indian Rupees (₹100,000) national cash prize, organized by the Ministry of Education & AICTE. Additional honors include Best Innovative Idea at HackEnvision 2.0 and multiple project expo placements.',
     durationSeconds: 15,
     keyPoints: [
-      'Smart India Hackathon 2024 — WINNER (₹1,00,000 National Cash Prize)',
+      'Smart India Hackathon 2024 — WINNER (One Hundred Thousand Indian Rupees / ₹100,000 National Cash Prize)',
       'Best Innovative Idea — NSAKCET’s HackEnvision 2.0',
       'Job Offer Recipient — Innovator’s Fest 24 & Multiple Hackathon Podiums',
     ],

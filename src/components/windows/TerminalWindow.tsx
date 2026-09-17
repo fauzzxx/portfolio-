@@ -117,7 +117,7 @@ d-----          9/9/2026   1:00 AM                Projects (${PROJECTS_DATA.leng
 d-----          9/9/2026   1:00 AM                AI-Lab (Vision & LLM Platforms)
 d-----          9/9/2026   1:00 AM                Skills (${SKILLS_DATA.reduce((acc, c) => acc + c.skills.length, 0)} cataloged competencies)
 d-----          9/9/2026   1:00 AM                Experience (Work History & Osmania Univ)
-d-----          9/9/2026   1:00 AM                Achievements (SIH 2024 Winner ₹1,00,000)
+d-----          9/9/2026   1:00 AM                Achievements (SIH 2024 Winner - One Hundred Thousand Indian Rupees)
 -a----          9/9/2026   1:00 AM           4096 Resume.pdf
 -a----          9/9/2026   1:00 AM           2048 README.md`,
         });
@@ -204,7 +204,7 @@ EDUCATION:
         newHistory.push({
           type: 'output',
           text: `HONORS & RECOGNITIONS:
-★ Smart India Hackathon 2024 — WINNER (₹1,00,000 Cash Prize)
+★ Smart India Hackathon 2024 — WINNER (One Hundred Thousand Indian Rupees / ₹100,000 Cash Prize)
   National Champions, Ministry of Education & AICTE, Government of India
 ★ Best Innovative Idea — NSAKCET's HackEnvision 2.0
 ★ Job Offer Recipient — Innovator's Fest 24

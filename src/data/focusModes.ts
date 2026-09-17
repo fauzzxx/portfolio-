@@ -50,7 +50,7 @@ export const FOCUS_MODES: Record<'2min' | '5min', FocusModeConfig> = {
         title: 'National Hackathon Victory',
         subtitle: 'Smart India Hackathon 2024 Winner',
         highlightText:
-          'Awarded ₹1,00,000 cash prize as the national winner among thousands of engineering teams across India.',
+          'Awarded One Hundred Thousand Indian Rupees (₹100,000) cash prize as the national winner among thousands of engineering teams across India.',
         bullets: [
           'Premier competition organized by Ministry of Education & AICTE',
           'Built Smart Classroom Assist: YOLOv11 + OCR + generative explainer video',
@@ -198,7 +198,7 @@ export const FOCUS_MODES: Record<'2min' | '5min', FocusModeConfig> = {
         highlightText:
           'Consistent record of competitive performance backed by professional backend development experience.',
         bullets: [
-          'Smart India Hackathon 2024 Winner (National 1st Place, ₹1,00,000 prize)',
+          'Smart India Hackathon 2024 Winner (National 1st Place, One Hundred Thousand Indian Rupees / ₹100,000 prize)',
           'NSAKCET HackEnvision 2.0 Best Innovative Idea & Innovator’s Fest 24 Offer',
           'Market Now Senior Backend Developer & Rubat AI Backend Developer Intern',
         ],

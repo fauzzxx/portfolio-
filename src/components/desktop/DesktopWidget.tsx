@@ -188,7 +188,7 @@ export const DesktopWidget: React.FC<DesktopWidgetProps> = ({
                   <Trophy className="w-3.5 h-3.5 text-[#f7b500]" />
                   <span>SIH 2024 Winner</span>
                 </div>
-                <span className="text-[10.5px] text-[#f7b500] font-semibold">₹1,00,000</span>
+                <span className="text-[10px] text-[#f7b500] font-semibold text-right ml-2">One Hundred Thousand Indian Rupees</span>
               </div>
 
               <div className="flex items-center justify-between p-1.5 rounded bg-white/5 border border-white/5">

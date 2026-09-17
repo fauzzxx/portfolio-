@@ -283,10 +283,10 @@
       "estimatedDuration": 30,
       "startTime": 218,
       "endTime": 246,
-      "script": "My dedication to practical innovation has led to significant achievements, including winning the Smart India Hackathon 2024, a premier national hackathon, with a cash prize of one lakh rupees. Professionally, I've gained valuable experience as a Senior Backend Developer at Market Now, contributing to Generative Engine Optimization. My B.E. in Computer Science and Engineering from Osmania University provides a strong academic foundation.",
+      "script": "My dedication to practical innovation has led to significant achievements, including winning the Smart India Hackathon 2024, a premier national hackathon, with a cash prize of one hundred thousand Indian rupees. Professionally, I've gained valuable experience as a Senior Backend Developer at Market Now, contributing to Generative Engine Optimization. My B.E. in Computer Science and Engineering from Osmania University provides a strong academic foundation.",
       "captionSentences": [
         {
-          "text": "My dedication to practical innovation has led to significant achievements, including winning the Smart India Hackathon 2024, a premier national hackathon, with a cash prize of one lakh rupees.",
+          "text": "My dedication to practical innovation has led to significant achievements, including winning the Smart India Hackathon 2024, a premier national hackathon, with a cash prize of one hundred thousand Indian rupees.",
           "approxStart": 218.0,
           "approxEnd": 230.3
         },
@@ -304,7 +304,7 @@
       "projectIds": [],
       "videoRefs": [],
       "keyTakeaways": [
-        "Smart India Hackathon 2024 Winner (\u20b91,00,000 prize)",
+        "Smart India Hackathon 2024 Winner (One Hundred Thousand Indian Rupees / ₹100,000 prize)",
         "Senior Backend Developer experience at Market Now",
         "Strong academic foundation (B.E. Computer Science and Engineering (CSE), Osmania University)"
       ],

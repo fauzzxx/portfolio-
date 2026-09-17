@@ -153,7 +153,7 @@ export const StartMenu: React.FC<StartMenuProps> = ({
                   Smart India Hackathon 2024
                 </span>
                 <span className="text-[11px] text-[#f7b500] block truncate">
-                  WINNER • ₹1,00,000 National Prize
+                  WINNER • One Hundred Thousand Indian Rupees (₹100,000)
                 </span>
               </div>
             </div>
@@ -367,7 +367,7 @@ export const StartMenu: React.FC<StartMenuProps> = ({
                   Smart India Hackathon 2024
                 </span>
                 <span className="text-[11px] text-[#f7b500] block truncate">
-                  WINNER • ₹1,00,000 National Prize
+                  WINNER • One Hundred Thousand Indian Rupees (₹100,000)
                 </span>
               </div>
             </div>

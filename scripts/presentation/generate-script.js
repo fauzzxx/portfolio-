@@ -97,13 +97,13 @@ REQUIRED SECTIONS (8 segments):
    - Core showcase systems:
      * AL-AQL: 100% offline multimodal assistant. Flutter frontend + Python/llama.cpp backend. TinyLLaMA 1.1B quantized to 4-bit NF4 (shrinking 4.1GB down to ~590MB for zero-cloud local execution). LoRA parameter-efficient fine-tuning (~0.13% parameters), RAG with LlamaIndex + ChromaDB, Stable Diffusion + ControlNet for offline image generation, and Model Context Protocol (MCP) integrations.
      * Weaver AI: Generative application engine using FastAPI and Gemini to synthesize full-stack web applications from natural language prompts with real-time live preview and code iteration.
-     * Smart Classroom Assist: SIH 2024 Winner (₹1,00,000 national prize). Flutter + Python + YOLOv11 + MediaPipe + OpenCV + Gemini for automated student attendance, lecture board capture, and interactive animations.
+     * Smart Classroom Assist: SIH 2024 Winner (One Hundred Thousand Indian Rupees / ₹100,000 national prize). Flutter + Python + YOLOv11 + MediaPipe + OpenCV + Gemini for automated student attendance, lecture board capture, and interactive animations.
      * RouteX Capital & MarketNOW: Financial transaction route analytics and Generative Engine Optimization (GEO) architecture.
 6. Segment 6: Application Development & Experiments Montage (approx 45s, ~110-130 words)
    - Systems: Mahdaviat (community digital platform), Offline AI Chatbot, PatrolPro (smart city pothole & animal conflict detection), Money Mapper.
    - Experiments montage: AI Drawing Challenge, Blender Automation using MCP, Whack-a-Mole, Blinker Word.
 7. Segment 7: Achievements & Experience (approx 25s, ~60-70 words)
-   - Winner of Smart India Hackathon 2024 (premier national hackathon by Ministry of Education & AICTE, ₹1,00,000 cash prize). Senior Backend Developer experience at Market Now, plus B.E. Computer Science and Engineering (CSE) from Osmania University.
+   - Winner of Smart India Hackathon 2024 (premier national hackathon by Ministry of Education & AICTE, One Hundred Thousand Indian Rupees / ₹100,000 cash prize). Senior Backend Developer experience at Market Now, plus B.E. Computer Science and Engineering (CSE) from Osmania University.
 8. Segment 8: Closing (approx 25s, ~60-70 words)
    - Professional closing: Thank the interviewer/visitor. Invite them to interactively explore FAUZAAN OS, inspect source traces in the AI Lab, review the resume, or get in touch.
 

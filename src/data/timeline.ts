@@ -47,7 +47,7 @@ export const TIMELINE_DATA: TimelineEntry[] = [
     organization: 'Ministry of Education & AICTE, Govt of India',
     category: 'achievement',
     badge: 'National Winner',
-    gradeOrPrize: '₹1,00,000 Cash Prize',
+    gradeOrPrize: 'One Hundred Thousand Indian Rupees (₹100,000) Cash Prize',
     description: 'Winner of India’s premier national hackathon for innovative classroom computer-vision automation.',
     targetAppId: 'achievements',
     targetProjectId: 'smart-classroom-assist',
