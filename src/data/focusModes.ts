@@ -37,7 +37,7 @@ export const FOCUS_MODES: Record<'2min' | '5min', FocusModeConfig> = {
         highlightText:
           'Fauzaan builds production-grade software specializing in real-time computer vision, agentic pipelines, and local LLM architectures.',
         bullets: [
-          'B.Tech CSE from Osmania University (GPA 8.32 / 10.0)',
+          'B.E. Computer Science and Engineering (CSE) from Osmania University (GPA 8.32 / 10.0)',
           'Class XII from IIPS Riyadh (88.8%)',
           'Full-stack execution: Flutter, Python, TypeScript, YOLO, PyTorch',
         ],

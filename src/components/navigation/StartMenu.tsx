@@ -117,7 +117,7 @@ export const StartMenu: React.FC<StartMenuProps> = ({
                   Curriculum Vitae
                 </span>
                 <span className="text-[11px] text-white/50 block truncate">
-                  Osmania University • B.Tech (GPA 8.32)
+                  Osmania University • B.E. Computer Science and Engineering (CSE)
                 </span>
               </div>
             </div>

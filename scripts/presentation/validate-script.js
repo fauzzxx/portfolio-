@@ -33,12 +33,18 @@ export async function validateScript() {
     errors.push('No presentation segments found in presentation.json');
   }
 
-  // 2. Check forbidden names
-  const forbiddenPatterns = [/\baffan\b/i, /\basif\b/i];
+  // 2. Check forbidden names and incorrect degree titles (must strictly be B.E. Computer Science and Engineering)
+  const forbiddenPatterns = [
+    /\baffan\b/i,
+    /\basif\b/i,
+    /\bB\.?\s*Tech\b/i,
+    /\bBTech\b/i,
+    /\bBachelor\s+of\s+Technology\b/i,
+  ];
   const fullText = JSON.stringify(data);
   for (const pattern of forbiddenPatterns) {
     if (pattern.test(fullText)) {
-      errors.push(`FORBIDDEN NAME DETECTED matching regex: ${pattern}`);
+      errors.push(`FORBIDDEN TERM DETECTED matching regex: ${pattern} (Osmania University degree must be B.E. Computer Science and Engineering)`);
     }
   }
 

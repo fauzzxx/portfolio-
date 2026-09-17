@@ -22,10 +22,10 @@
 **Duration:** 26s (18s - 44s)
 
 ### Script:
-"I graduated from Osmania University with a B.Tech in Computer Science Engineering, achieving a GPA of 8.32. My engineering philosophy centers on transforming machine perception and local intelligence from research models into functional, reliable, and impactful products. I believe in practical innovation."
+"I graduated from Osmania University with a B.E. in Computer Science and Engineering, achieving a GPA of 8.32. My engineering philosophy centers on transforming machine perception and local intelligence from research models into functional, reliable, and impactful products. I believe in practical innovation."
 
 **Key Points:**
-- B.Tech in Computer Science Engineering (Osmania University, GPA 8.32)
+- B.E. Computer Science and Engineering (CSE) (Osmania University, GPA 8.32)
 - Philosophy: practical application of AI research
 - Focus on functional, reliable, and impactful products
 
@@ -98,12 +98,12 @@
 **Duration:** 30s (256s - 286s)
 
 ### Script:
-"My dedication to practical innovation has led to significant achievements, including winning the Smart India Hackathon 2024, a premier national hackathon, with a cash prize of one lakh rupees. Professionally, I've gained valuable experience as a Senior Backend Developer at Market Now, contributing to Generative Engine Optimization. My B.Tech in Computer Science Engineering from Osmania University provides a strong academic foundation."
+"My dedication to practical innovation has led to significant achievements, including winning the Smart India Hackathon 2024, a premier national hackathon, with a cash prize of one lakh rupees. Professionally, I've gained valuable experience as a Senior Backend Developer at Market Now, contributing to Generative Engine Optimization. My B.E. in Computer Science and Engineering from Osmania University provides a strong academic foundation."
 
 **Key Points:**
 - Smart India Hackathon 2024 Winner (₹1,00,000 prize)
 - Senior Backend Developer experience at Market Now
-- Strong academic foundation (B.Tech, Osmania University)
+- Strong academic foundation (B.E. Computer Science and Engineering (CSE), Osmania University)
 
 ---
 

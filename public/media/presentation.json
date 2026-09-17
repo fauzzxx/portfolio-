@@ -44,10 +44,10 @@
       "estimatedDuration": 26,
       "startTime": 17,
       "endTime": 39,
-      "script": "I graduated from Osmania University with a B.Tech in Computer Science Engineering, achieving a GPA of 8.32. My engineering philosophy centers on transforming machine perception and local intelligence from research models into functional, reliable, and impactful products. I believe in practical innovation.",
+      "script": "I graduated from Osmania University with a B.E. in Computer Science and Engineering, achieving a GPA of 8.32. My engineering philosophy centers on transforming machine perception and local intelligence from research models into functional, reliable, and impactful products. I believe in practical innovation.",
       "captionSentences": [
         {
-          "text": "I graduated from Osmania University with a B.Tech in Computer Science Engineering, achieving a GPA of 8.32.",
+          "text": "I graduated from Osmania University with a B.E. in Computer Science and Engineering, achieving a GPA of 8.32.",
           "approxStart": 17.0,
           "approxEnd": 24.7
         },
@@ -65,7 +65,7 @@
       "projectIds": [],
       "videoRefs": [],
       "keyTakeaways": [
-        "B.Tech in Computer Science Engineering (Osmania University, GPA 8.32)",
+        "B.E. Computer Science and Engineering (CSE) (Osmania University, GPA 8.32)",
         "Philosophy: practical application of AI research",
         "Focus on functional, reliable, and impactful products"
       ],
@@ -283,7 +283,7 @@
       "estimatedDuration": 30,
       "startTime": 218,
       "endTime": 246,
-      "script": "My dedication to practical innovation has led to significant achievements, including winning the Smart India Hackathon 2024, a premier national hackathon, with a cash prize of one lakh rupees. Professionally, I've gained valuable experience as a Senior Backend Developer at Market Now, contributing to Generative Engine Optimization. My B.Tech in Computer Science Engineering from Osmania University provides a strong academic foundation.",
+      "script": "My dedication to practical innovation has led to significant achievements, including winning the Smart India Hackathon 2024, a premier national hackathon, with a cash prize of one lakh rupees. Professionally, I've gained valuable experience as a Senior Backend Developer at Market Now, contributing to Generative Engine Optimization. My B.E. in Computer Science and Engineering from Osmania University provides a strong academic foundation.",
       "captionSentences": [
         {
           "text": "My dedication to practical innovation has led to significant achievements, including winning the Smart India Hackathon 2024, a premier national hackathon, with a cash prize of one lakh rupees.",
@@ -296,7 +296,7 @@
           "approxEnd": 239.3
         },
         {
-          "text": "My B.Tech in Computer Science Engineering from Osmania University provides a strong academic foundation.",
+          "text": "My B.E. in Computer Science and Engineering from Osmania University provides a strong academic foundation.",
           "approxStart": 239.3,
           "approxEnd": 246.0
         }
@@ -306,7 +306,7 @@
       "keyTakeaways": [
         "Smart India Hackathon 2024 Winner (\u20b91,00,000 prize)",
         "Senior Backend Developer experience at Market Now",
-        "Strong academic foundation (B.Tech, Osmania University)"
+        "Strong academic foundation (B.E. Computer Science and Engineering (CSE), Osmania University)"
       ],
       "actualDuration": 27.9
     },

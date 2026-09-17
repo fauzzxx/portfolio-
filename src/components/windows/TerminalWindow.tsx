@@ -195,7 +195,7 @@ d-----          9/9/2026   1:00 AM                Achievements (SIH 2024 Winner 
 • Data Analyst Intern          : Codetech IT Solution
 
 EDUCATION:
-• Osmania University           : B.Tech in Computer Science Engineering (GPA: 8.32 / 10.0)
+• Osmania University           : B.E. Computer Science and Engineering (CSE) (GPA: 8.32 / 10.0)
 • IIPS Riyadh, KSA             : Higher Secondary Class XII (88.8%, Graduated 2022)`,
         });
         break;

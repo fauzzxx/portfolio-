@@ -35,7 +35,7 @@ export const EDUCATION_DATA: EducationItem[] = [
   {
     id: 'edu-osmania',
     institution: 'Osmania University',
-    degree: 'B.Tech in Computer Science Engineering',
+    degree: 'B.E. Computer Science and Engineering (CSE)',
     grade: 'GPA: 8.32 / 10.0',
     location: 'Hyderabad, India',
   },

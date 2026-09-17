@@ -204,7 +204,7 @@ export const DesktopWidget: React.FC<DesktopWidgetProps> = ({
                   <FileText className="w-3.5 h-3.5 text-[#2b579a]" />
                   <span>Osmania University</span>
                 </div>
-                <span className="text-[10px] text-white/50">B.Tech (GPA 8.32)</span>
+                <span className="text-[10px] text-white/50">B.E. CSE (GPA 8.32)</span>
               </div>
             </div>
 

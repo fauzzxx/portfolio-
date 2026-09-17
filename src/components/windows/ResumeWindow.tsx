@@ -83,7 +83,7 @@ export const ResumeWindow: React.FC = () => {
 
             <div className="text-xs text-win-muted-light dark:text-win-muted-dark sm:text-right space-y-0.5">
               <p>Hyderabad, Telangana, India</p>
-              <p>Osmania University • B.E. Computer Science</p>
+              <p>Osmania University • B.E. Computer Science and Engineering (CSE)</p>
             </div>
           </div>
 

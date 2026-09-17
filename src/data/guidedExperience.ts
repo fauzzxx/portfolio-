@@ -40,10 +40,10 @@ export const GUIDED_CHAPTERS: GuidedChapter[] = [
     storyPhase: 'origin',
     associatedAppId: 'experience',
     narrationText:
-      'My formal foundation in computer science was honed at Osmania University where I completed my B.Tech in Computer Science Engineering with an 8.32 GPA, following my secondary schooling at International Indian Public School Riyadh with 88.8%. This rigorous background anchors my practical systems work.',
+      'My formal foundation in computer science was honed at Osmania University where I completed my B.E. Computer Science and Engineering (CSE) with an 8.32 GPA, following my secondary schooling at International Indian Public School Riyadh with 88.8%. This rigorous background anchors my practical systems work.',
     durationSeconds: 13,
     keyPoints: [
-      'Osmania University — B.Tech CSE (GPA: 8.32 / 10.0)',
+      'Osmania University — B.E. Computer Science and Engineering (CSE) (GPA: 8.32 / 10.0)',
       'IIPS Riyadh, KSA — Higher Secondary (88.8%, Graduated 2022)',
       'Strong algorithmic, systems, and mathematics foundation',
     ],

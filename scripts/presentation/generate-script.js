@@ -103,7 +103,7 @@ REQUIRED SECTIONS (8 segments):
    - Systems: Mahdaviat (community digital platform), Offline AI Chatbot, PatrolPro (smart city pothole & animal conflict detection), Money Mapper.
    - Experiments montage: AI Drawing Challenge, Blender Automation using MCP, Whack-a-Mole, Blinker Word.
 7. Segment 7: Achievements & Experience (approx 25s, ~60-70 words)
-   - Winner of Smart India Hackathon 2024 (premier national hackathon by Ministry of Education & AICTE, ₹1,00,000 cash prize). Senior Backend Developer experience at Market Now, plus B.Tech from Osmania University.
+   - Winner of Smart India Hackathon 2024 (premier national hackathon by Ministry of Education & AICTE, ₹1,00,000 cash prize). Senior Backend Developer experience at Market Now, plus B.E. Computer Science and Engineering (CSE) from Osmania University.
 8. Segment 8: Closing (approx 25s, ~60-70 words)
    - Professional closing: Thank the interviewer/visitor. Invite them to interactively explore FAUZAAN OS, inspect source traces in the AI Lab, review the resume, or get in touch.
 

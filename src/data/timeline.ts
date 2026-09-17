@@ -75,7 +75,7 @@ export const TIMELINE_DATA: TimelineEntry[] = [
   },
   {
     id: 'tl-osmania',
-    title: 'B.Tech in Computer Science Engineering',
+    title: 'B.E. Computer Science and Engineering (CSE)',
     organization: 'Osmania University',
     location: 'Hyderabad, India',
     category: 'education',

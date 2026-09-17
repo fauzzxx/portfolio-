@@ -46,7 +46,7 @@ export const AboutWindow: React.FC = () => {
         <div className="pt-3 border-t border-black/5 dark:border-white/5 flex flex-wrap items-center gap-4 text-xs text-win-muted-light dark:text-win-muted-dark">
           <div className="flex items-center gap-1.5">
             <GraduationCap className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-            <span>Osmania University (B.E. CSE)</span>
+            <span>Osmania University • B.E. Computer Science and Engineering (CSE)</span>
           </div>
           <div className="flex items-center gap-1.5">
             <MapPin className="w-3.5 h-3.5 text-win-accent" />
